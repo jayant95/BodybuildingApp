@@ -29,6 +29,11 @@ a {
   height: 60px;
 }
 
+/* LOGIN.PHP */
+.login-form>label,input {
+  display: block;
+}
+
 /* HOME.PHP */
 .site-feature {
   background-color: rgb(200, 200, 200);

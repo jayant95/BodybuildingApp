@@ -8,7 +8,7 @@
     <ul>
       <!-- Use php to check if username session variable is there.
       If it isn't, display and this -->
-      <li><a href="#">Login</a></li>
+      <li><a href="login.php">Login</a></li>
       <!-- otherwise display "Welcome "[username]" and this -->
       <li><a href="#">Logout</a></li>
     </ul>
