@@ -1,33 +1,25 @@
 <?php
   require_once("includes/db_connection.php");
-
-  /*
-  $sql = "SELECT name FROM bodybuilders";
+  
+  $sql = "SELECT * FROM bodybuilders";
   $result = $connection->query($sql);
 
   if ($result->num_rows > 0) {
     // output data
     while($row = $result->fetch_assoc()) {
       echo "name: " . $row["name"];
-      echo "<br>";
+      echo "<br />";
+      echo "height: " . $row["height"] . " inch";
+      echo "<br />";
+      echo "<br />";
     }
   }
 
   $connection->close();
-  */
+  
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Achieve the Physique</title>
-    <meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-  </head>
 
-
-  <body>
 
   <?php require("includes/header.php"); ?>
 
@@ -77,10 +69,3 @@
   </div>
 
   <?php require("includes/footer.php"); ?>
-
-  </body>
-
-
-
-
-</html>
