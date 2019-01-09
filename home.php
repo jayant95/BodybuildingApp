@@ -1,3 +1,22 @@
+<?php
+  require_once("includes/db_connection.php");
+
+  /*
+  $sql = "SELECT name FROM bodybuilders";
+  $result = $connection->query($sql);
+
+  if ($result->num_rows > 0) {
+    // output data
+    while($row = $result->fetch_assoc()) {
+      echo "name: " . $row["name"];
+      echo "<br>";
+    }
+  }
+
+  $connection->close();
+  */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
