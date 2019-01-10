@@ -14,7 +14,7 @@
       <label>Password:</label>
       <input class="login-input" type="password" name="password" value=""/>
       <label>Confirm Password:</label>
-      <input class="login-input" type="password" name="password" value=""/>
+      <input class="login-input" type="password" name="password-confirm" value=""/>
       <input class="login-button" type="submit" name="submit" value="Submit"/>
     </div>
   </form>
