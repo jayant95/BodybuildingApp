@@ -8,90 +8,84 @@
 
 <?php require ("includes/header.php");?>
 
-<h2>Pin Body Part</h2>
 
-  <div class="content-wrapper">
+
+
     <div class="main-features">
-      <a href="#">
-        <div class="site-feature">
-          <div class="pin-muscle-group">
-            <h2>Arms</h2>
+      <h2>Pin Body Part</h2>
+        <a href="#">
+          <div class="site-feature">
+            <div class="pin-muscle-group">
+              <h2>Arms</h2>
+            </div>
           </div>
-        </div>
-      </a>
-      <a href="#">
-        <div class="site-feature">
-          <div class="pin-by-height">
-            <h2>Chest</h2>
+        </a>
+        <a href="#">
+          <div class="site-feature">
+            <div class="chest">
+              <h2>Chest</h2>
+            </div>
           </div>
-        </div>
-      </a>
-      <a href="#">
-        <div class="site-feature">
-          <div class="pin-by-height">
-            <h2>Waist</h2>
+        </a>
+        <a href="#">
+          <div class="site-feature">
+            <div class="waist">
+              <h2>Waist</h2>
+            </div>
           </div>
-        </div>
-      </a>
-      <a href="#">
-        <div class="site-feature">
-          <div class="pin-by-height">
-            <h2>Thighs</h2>
+        </a>
+        <a href="#">
+          <div class="site-feature">
+            <div class="thighs">
+              <h2>Thighs</h2>
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+        <a href="#">
+          <div class="site-feature">
+            <div class="calves">
+              <h2>Calves</h2>
+            </div>
+          </div>
+        </a>
+      </div>
 
+
+
+
+<div class="main-features">
+
+  <h2>Bodybuilders</h2>
+
+    <?php 
+      if ($result->num_rows > 0) {
+        // output data
+        while($row = $result->fetch_assoc()) {
+          echo "<a href=\"#\">";
+          echo "
+          		<div class=\"site-feature\">
+              	<div class=\"bodybuilder\">
+              	";
+          echo "name: " . $row["name"];
+          echo "<br />";
+          echo "height: " . $row["height"] . " inch";
+          echo "</a>";
+          echo "</div>";
+          echo "</div>";
+          echo "<br />";
+        }
+      }
+
+      $connection->close();
+      
+    ?>
+</div>
       <a href="#">
         <div class="site-feature">
-          <div class="pin-by-height">
-            <h2>Calves</h2>
-          </div>
+          <button type="submit" form="pinbodypart" value="Submit">Submit</button>
         </div>
       </a>
     </div>
-  </div>
-
-
-<h2>Bodybuilders</h2>
-
-  <div class="content-wrapper">
-    <div class="main-features">
-      <a href="#">
-
-<?php 
-  if ($result->num_rows > 0) {
-    // output data
-    while($row = $result->fetch_assoc()) {
-      echo "        
-      		<div class=\"site-feature\">
-          	<div class=\"pin-muscle-group\">
-          	";
-      echo "name: " . $row["name"];
-      echo "<br />";
-      echo "height: " . $row["height"] . " inch";
-      echo "</div>";
-      echo "</div>";
-      echo "<br />";
-    }
-  }
-
-  $connection->close();
-  
-?>
-
-
-          </div>
-        </div>
-      </a>
-      <a href="#">
-        <div class="site-feature">
-          <div class="pin-by-height">
-            <button type="submit" form="pinbodypart" value="Submit">Submit</button>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
 
 
 <?php require ("includes/footer.php");?>
