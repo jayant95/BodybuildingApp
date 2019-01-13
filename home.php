@@ -1,6 +1,7 @@
 <?php
   require_once("includes/db_connection.php");
-  
+
+  /*
   $sql = "SELECT * FROM bodybuilders";
   $result = $connection->query($sql);
 
@@ -16,7 +17,8 @@
   }
 
   $connection->close();
-  
+  */
+
 ?>
 
 
