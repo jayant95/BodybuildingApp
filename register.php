@@ -48,7 +48,7 @@
       <input class="login-input" type="text" name="email" value="<?php echo $user['email'] ?>"/>
       <label>Username:</label>
       <input class="login-input" type="text" name="username" value="<?php echo $user['username'] ?>"/>
-      <label>Password:</label>
+      <label>Password: (Password must contain at least one special character, upper & lower case letter and number)</label>
       <input class="login-input" type="password" name="password" value=""/>
       <label>Confirm Password:</label>
       <input class="login-input" type="password" name="confirm-password" value=""/>

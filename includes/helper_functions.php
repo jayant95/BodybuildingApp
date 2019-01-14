@@ -27,10 +27,12 @@
       $errors[] = "Passwords must match";
     }
 
+    if (!preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,50}$/', $user['password'])) {
+      $errors[] = 'Password does not meet the requirements!';
+    }
+
     // Return the array of errors
     return $errors;
   }
-
-
 
 ?>
