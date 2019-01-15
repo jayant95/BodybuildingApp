@@ -9,5 +9,7 @@
 
 	</body>
 
+	<script src="/script/form.js"></script>
+
 
 </html>
