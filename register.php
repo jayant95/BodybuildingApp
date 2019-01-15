@@ -1,5 +1,6 @@
 <?php
   require("includes/header.php");
+  require_once("includes/db_connection.php");
   require_once("includes/helper_functions.php");
 
   $user = [];
@@ -23,6 +24,20 @@
     if ($errors) {
       $incomplete = true;
     }
+
+    if (!$incomplete) {
+        $registeredUsername = isExistingUsername($user['username'], $connection);
+        $registeredEmail = isExistingEmail($user['email'], $connection);
+        if (!$registeredEmail && !$registeredUsername) {
+          registerNewUser($user, $connection);
+          header("Location: home.php");
+        } else {
+          $errors[] = $registeredUsername;
+          $errors[] = $registeredEmail;
+        }
+    }
+
+    $connection->close();
 
     if (!empty($errors)) {
       // List out form errors

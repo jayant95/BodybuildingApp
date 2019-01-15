@@ -35,4 +35,59 @@
     return $errors;
   }
 
+
+  function registerNewUser($user, $connection) {
+    $hashed_password = password_hash($user['password'], PASSWORD_BCRYPT);
+
+    $stmt = $connection->prepare('INSERT INTO members (firstName, lastName, email, username, password) VALUES (?, ?, ?, ?, ?)');
+    $stmt->bind_param('sssss', $user['first-name'], $user['last-name'], $user['email'], $user['username'], $hashed_password);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    if ($result) {
+      echo "Registration was successful";
+      // Redirect to homepage after registration is complete
+      header("Location: home.php");
+    } else {
+      echo mysqli_error($connection);
+    }
+
+  }
+
+  function isExistingUsername($username, $connection) {
+    $error = "";
+
+    $stmt = $connection->prepare('SELECT * FROM members WHERE username = ?');
+    $stmt->bind_param('s', $username);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    if (mysqli_num_rows($result) > 0) {
+      $error = "This username already exists";
+    }
+    $stmt->close();
+    // $connection->close();
+
+    return $error;
+  }
+
+  function isExistingEmail($email, $connection) {
+    $error = "";
+
+    $stmt = $connection->prepare('SELECT * FROM members WHERE email = ?');
+    $stmt->bind_param('s', $email);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    if (mysqli_num_rows($result) > 0) {
+      $error = "This email already exists";
+    }
+    $stmt->close();
+    // $connection->close();
+
+    return $error;
+  }
 ?>
