@@ -1,3 +1,5 @@
-$( ".target" ).change(function() {
-  alert( "Handler for .change() called." );
+$(document).ready(function(){
+	$(".submit").click(function(){
+		alert('hello');
+	});
 });

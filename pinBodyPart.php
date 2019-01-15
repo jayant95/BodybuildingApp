@@ -82,7 +82,7 @@
 </div>
       <a href="#">
         <div class="site-feature">
-          <button type="submit" form="pinbodypart" value="Submit">Submit</button>
+          <button type="submit" class="submit" form="pinbodypart" value="Submit">Submit</button>
         </div>
       </a>
     </div>
