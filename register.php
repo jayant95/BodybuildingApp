@@ -26,14 +26,18 @@
     }
 
     if (!$incomplete) {
-        $registeredUsername = isExistingUsername($user['username'], $connection);
-        $registeredEmail = isExistingEmail($user['email'], $connection);
-        if (!$registeredEmail && !$registeredUsername) {
+        $isRegisteredEmail = isExistingUser($user['email'], $connection, "email");
+        $isRegisteredUsername = isExistingUser($user['username'], $connection, "username");
+        if (!$isRegisteredEmail && !$isRegisteredUsername) {
           registerNewUser($user, $connection);
           header("Location: home.php");
         } else {
-          $errors[] = $registeredUsername;
-          $errors[] = $registeredEmail;
+          if ($isRegisteredEmail != NULL) {
+            $errors[] = $isRegisteredEmail;
+          }
+          if ($isRegisteredUsername != NULL) {
+            $errors[] = $isRegisteredUsername;
+          }
         }
     }
 

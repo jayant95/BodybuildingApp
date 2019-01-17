@@ -52,42 +52,27 @@
     } else {
       echo mysqli_error($connection);
     }
-
   }
 
-  function isExistingUsername($username, $connection) {
+  function isExistingUser($data, $connection, $column) {
     $error = "";
 
-    $stmt = $connection->prepare('SELECT * FROM members WHERE username = ?');
-    $stmt->bind_param('s', $username);
+    $stmt = $connection->prepare("SELECT * FROM members WHERE " .$column. " = ?");
+    $stmt->bind_param('s', $data);
 
     $stmt->execute();
 
     $result = $stmt->get_result();
-    if (mysqli_num_rows($result) > 0) {
-      $error = "This username already exists";
+    while ($row = $result->fetch_assoc()) {
+      if ($row[$column] == $data) {
+        $error = "The " .$column. " you entered already exists.";
+        break;
+      }
     }
+
     $stmt->close();
-    // $connection->close();
 
     return $error;
   }
 
-  function isExistingEmail($email, $connection) {
-    $error = "";
-
-    $stmt = $connection->prepare('SELECT * FROM members WHERE email = ?');
-    $stmt->bind_param('s', $email);
-
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-    if (mysqli_num_rows($result) > 0) {
-      $error = "This email already exists";
-    }
-    $stmt->close();
-    // $connection->close();
-
-    return $error;
-  }
 ?>
