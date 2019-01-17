@@ -1,6 +1,7 @@
 <?php
+  session_start();
   require_once("includes/db_connection.php");
-  
+
   $sql = "SELECT * FROM bodybuilders";
   $result = $connection->query($sql);
 
@@ -57,7 +58,7 @@
 
   <h2>Bodybuilders</h2>
 
-    <?php 
+    <?php
       if ($result->num_rows > 0) {
         // output data
         while($row = $result->fetch_assoc()) {
@@ -77,7 +78,7 @@
       }
 
       $connection->close();
-      
+
     ?>
 </div>
       <a href="#">

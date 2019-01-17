@@ -43,15 +43,14 @@
     $stmt->bind_param('sssss', $user['first-name'], $user['last-name'], $user['email'], $user['username'], $hashed_password);
 
     $stmt->execute();
-
     $result = $stmt->get_result();
-    if ($result) {
-      echo "Registration was successful";
-      // Redirect to homepage after registration is complete
-      header("Location: home.php");
-    } else {
-      echo mysqli_error($connection);
-    }
+
+    $stmt->close();
+
+    $_SESSION['first-name'] = $user['first-name'];
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['email'] = $user['email'];
+
   }
 
   function isExistingUser($data, $connection, $column) {

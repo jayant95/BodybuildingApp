@@ -1,4 +1,7 @@
-<?php require("includes/header.php") ?>
+<?php
+  session_start();
+  require("includes/header.php")
+?>
 
   <div class="content-wrapper">
     <form action="" method="post">
@@ -8,6 +11,7 @@
         <label>Password:</label>
         <input class="login-input" type="password" name="password" value=""/>
         <input class="login-button" type="submit" name="submit" value="Submit"/>
+        <p>Don't have an account? <a href="register.php">Register here</a></p>
       </div>
     </form>
   </div>
