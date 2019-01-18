@@ -74,4 +74,40 @@
     return $error;
   }
 
+  function loginByUsername($user, $connection) {
+    $error = "";
+    $validUsername = false;
+
+    $stmt = $connection->prepare('SELECT * FROM members WHERE username = ? LIMIT 1');
+    $stmt->bind_param('s', $user['username']);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $validUsername = true;
+      if ($row['username'] == $user['username']) {
+        if (password_verify($user['password'], $row['password'])) {
+          session_regenerate_id();
+
+          $_SESSION['first-name'] = $row['firstName'];
+          $_SESSION['username'] = $row['username'];
+
+          header("Location: home.php");
+        } else {
+          $error = "This password is incorrect";
+        }
+      } else {
+        $error = "This username is invalid";
+      }
+    }
+
+    if (!$validUsername) $error = "This username is invalid";
+
+    $stmt->close();
+    $connection->close();
+
+    return $error;
+  }
+
 ?>
