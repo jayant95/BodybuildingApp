@@ -16,14 +16,15 @@ $(document).ready(function(){
 		var muscleGroup = $(".pin-muscle-group.active").attr('id');
 		var bodybuilder = $(".bodybuilder.active").attr('id');
 
-		$.ajax({
-			type: 'post',
-			url: 'pinBodyPartForm.php',
-			data: $('form').serialize(),
-			success: function () {
-				alert('form submitted');
-			}
-		});
+		$("#pinBodyPart").submit();
+		// $.ajax({
+		// 	type: 'post',
+		// 	url: 'pinBodyPartForm.php',
+		// 	data: $('form').serialize(),
+		// 	success: function () {
+		// 		alert('form submitted');
+		// 	}
+
 		// if (validation()) {
 			
 		// 	return true;

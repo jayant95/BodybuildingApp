@@ -1,12 +1,11 @@
 <?php
 	include_once("includes/db_connection.php");
 
-	echo "HIHIHIHIHIHIHI";
 	// $memberID = "11";
 	 $goalID = "11";
-	 $bodybuilderName = $_POST['name'];
+//	 $bodybuilderName = $_POST['name'];
 
-	 echo $bodybuilderName;
+//	 echo $bodybuilderName;
 	// $featureName = $_POST['pin'];
 	// $currentGoal = $_POST['true']; // not sure how to update this once the next goal comes in
 	// $date = $_POST['0000'];
@@ -65,6 +64,7 @@
 
 	$leftArm = 
 	*/
+
 
 	if (mysql_query("INSERT INTO bodybuilders VALUES('$goalID','$bodybuilderName','11','11','11','11','11','11','11','11')"))
 		echo "Successfully inserted";

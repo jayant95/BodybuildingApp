@@ -8,10 +8,12 @@
   // Create the connection
   $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
-  // If theres an error display the error
+  // If there's an error display the error
   if (mysqli_connect_errno()) {
     die("Database connection failed: " .
     mysqli_connect_error() .
     " (" . mysqli_connect_errno(). ")");
   }
+
+
 ?>
