@@ -40,3 +40,8 @@ a {
   padding: 1rem;
   margin: 1rem;
 }
+
+/* SELECTORS */
+.active {
+  background-color: red;
+}

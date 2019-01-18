@@ -7,6 +7,7 @@
 ?>
 
 <?php require ("includes/header.php");?>
+          <form id="pinBodyPart" action="pinBodyPartForm.php" method="post">
 
 
 
@@ -15,35 +16,35 @@
       <h2>Pin Body Part</h2>
         <a href="#">
           <div class="site-feature">
-            <div class="pin-muscle-group">
+            <div class="pin-muscle-group" id="arms">
               <h2>Arms</h2>
             </div>
           </div>
         </a>
         <a href="#">
           <div class="site-feature">
-            <div class="chest">
+            <div class="pin-muscle-group" id="chest">
               <h2>Chest</h2>
             </div>
           </div>
         </a>
         <a href="#">
           <div class="site-feature">
-            <div class="waist">
+            <div class="pin-muscle-group" id="waist">
               <h2>Waist</h2>
             </div>
           </div>
         </a>
         <a href="#">
           <div class="site-feature">
-            <div class="thighs">
+            <div class="pin-muscle-group" id="thighs">
               <h2>Thighs</h2>
             </div>
           </div>
         </a>
         <a href="#">
           <div class="site-feature">
-            <div class="calves">
+            <div class="pin-muscle-group" id="calves">
               <h2>Calves</h2>
             </div>
           </div>
@@ -64,7 +65,7 @@
           echo "<a href=\"#\">";
           echo "
           		<div class=\"site-feature\">
-              	<div class=\"bodybuilder\">
+              	<div class=\"bodybuilder\" id=\"". $row["name"] . "\">
               	";
           echo "name: " . $row["name"];
           echo "<br />";
@@ -82,8 +83,10 @@
 </div>
       <a href="#">
         <div class="site-feature">
-          <button type="submit" class="submit" form="pinbodypart" value="Submit">Submit</button>
+            <button type="submit" class="submit" form="pinbodypart" value="Submit">Submit</button>
+         
         </div>
+         </form>
       </a>
     </div>
 
