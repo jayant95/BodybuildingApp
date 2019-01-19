@@ -110,4 +110,37 @@
     return $error;
   }
 
+  function getProfileInformation($username, $connection) {
+    $user_profile = [];
+
+    $stmt = $connection->prepare('SELECT * FROM members WHERE username = ? LIMIT 1');
+    $stmt->bind_param('s', $username);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $user_profile['first-name'] = $row['firstName'];
+      $user_profile['last-name'] = $row['lastName'];
+      $user_profile['email'] = $row['email'];
+      $user_profile['username'] = $row['username'];
+      $user_profile['leftArm'] = $row['leftArm'];
+      $user_profile['rightArm'] = $row['rightArm'];
+      $user_profile['chest'] = $row['chest'];
+      $user_profile['waist'] = $row['waist'];
+      $user_profile['leftThigh'] = $row['leftThigh'];
+      $user_profile['rightThigh'] = $row['rightThigh'];
+      $user_profile['leftCalf'] = $row['leftCalf'];
+      $user_profile['rightCalf'] = $row['rightCalf'];
+      $user_profile['shoulders'] = $row['shoulders'];
+      $user_profile['wrists'] = $row['wrists'];
+      $user_profile['ankles'] = $row['ankles'];
+      $user_profile['bodyFat'] = $row['bodyFat'];
+    }
+
+    $stmt->close();
+
+    return $user_profile;
+  }
+
 ?>
