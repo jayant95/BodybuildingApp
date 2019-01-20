@@ -6,6 +6,7 @@
 
   $user_profile = [];
   $editActive = false;
+
   if (!empty($_SESSION['username'])) {
     $user_profile = getProfileInformation($_SESSION['username'], $connection);
   } else {
@@ -16,7 +17,8 @@
     $editActive = true;
   }
 
-  if (isset($_POST['save'])) {
+  if (isset($_POST['update'])) {
+    $editActive = false;
     $user_profile['leftArm'] = !empty($_POST['leftArm']) ? $_POST['leftArm'] : "";
     $user_profile['rightArm'] = !empty($_POST['rightArm']) ? $_POST['rightArm'] : "";
     $user_profile['chest'] = !empty($_POST['chest']) ? $_POST['chest'] : "";
@@ -29,12 +31,17 @@
     $user_profile['wrists'] = !empty($_POST['wrists']) ? $_POST['wrists'] : "";
     $user_profile['ankles'] = !empty($_POST['ankles']) ? $_POST['ankles'] : "";
     $user_profile['bodyFat'] = !empty($_POST['bodyFat']) ? $_POST['bodyFat'] : "";
+    $user_profile['weight'] = !empty($_POST['weight']) ? $_POST['weight'] : "";
+    $user_profile['memberID'] = !empty($_SESSION['memberID']) ? $_SESSION['memberID'] : "";
 
-
+    updateUserProfile($user_profile, $connection);
 
   }
 
-
+  if (isset($_POST['save-log'])) {
+    $user_profile = getProfileInformation($_SESSION['username'], $connection);
+    saveUserProfileLog($user_profile, $connection);
+  }
 
 ?>
 
@@ -61,52 +68,57 @@
       <h3>Measurements</h3>
       <div class="profile-info-group">
         <label>Left Arm:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' name='leftArm' value=".$user_profile['leftArm']."" : "<p>".$user_profile['leftArm']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftArm' value=".$user_profile['leftArm']."" : "<p>".$user_profile['leftArm']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Right Arm:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' name='rightArm' value=".$user_profile['rightArm']."" : "<p>".$user_profile['rightArm']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightArm' value=".$user_profile['rightArm']."" : "<p>".$user_profile['rightArm']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Chest:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='text' name='chest' value=".$user_profile['chest']."" : "<p>".$user_profile['chest']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='chest' value=".$user_profile['chest']."" : "<p>".$user_profile['chest']."</p>"; ?>
       <div class="profile-info-group">
         <label>Waist:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='text' name='waist' value=".$user_profile['waist']."" : "<p>".$user_profile['waist']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='waist' value=".$user_profile['waist']."" : "<p>".$user_profile['waist']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Left Thigh:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='text' name='leftThigh' value=".$user_profile['leftThigh']."" : "<p>".$user_profile['leftThigh']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftThigh' value=".$user_profile['leftThigh']."" : "<p>".$user_profile['leftThigh']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Right Thigh:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='text' name='rightThigh' value=".$user_profile['rightThigh']."" : "<p>".$user_profile['rightThigh']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightThigh' value=".$user_profile['rightThigh']."" : "<p>".$user_profile['rightThigh']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Left Calf:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='text' name='leftCalf' value=".$user_profile['leftCalf']."" : "<p>".$user_profile['leftCalf']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftCalf' value=".$user_profile['leftCalf']."" : "<p>".$user_profile['leftCalf']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Right Calf:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='text' name='rightCalf' value=".$user_profile['rightCalf']."" : "<p>".$user_profile['rightCalf']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightCalf' value=".$user_profile['rightCalf']."" : "<p>".$user_profile['rightCalf']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Shoulders:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='text' name='shoulders' value=".$user_profile['shoulders']."" : "<p>".$user_profile['shoulders']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='shoulders' value=".$user_profile['shoulders']."" : "<p>".$user_profile['shoulders']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Wrists:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='text' name='wrists' value=".$user_profile['wrists']."" : "<p>".$user_profile['wrists']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='wrists' value=".$user_profile['wrists']."" : "<p>".$user_profile['wrists']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Ankles:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='text' name='ankles' value=".$user_profile['ankles']."" : "<p>".$user_profile['ankles']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='ankles' value=".$user_profile['ankles']."" : "<p>".$user_profile['ankles']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Body Fat:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='text' name='bodyFat' value=".$user_profile['bodyFat']."" : "<p>".$user_profile['bodyFat']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='bodyFat' value=".$user_profile['bodyFat']."" : "<p>".$user_profile['bodyFat']."</p>"; ?>
       </div>
-      <?php echo $editActive ? "<input class='profile-button' type='submit' name='save' value='Save'/>" : "<input class='profile-button' type='submit' name='edit' value='Edit'/>" ;?>
+      <div class="profile-info-group">
+        <label>Weight:</label>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='weight' value=".$user_profile['weight'].">" : "<p>".$user_profile['weight']."</p>"; ?>
+      </div>
+      <?php echo $editActive ? "<input class='profile-button' type='submit' name='update' value='Update'/>" : "<input class='profile-button' type='submit' name='edit' value='Edit'/>" ;?>
+      <input class="profile-button" type="submit" name="save-log" value="Save to History">
     </div>
   </form>
 </div>

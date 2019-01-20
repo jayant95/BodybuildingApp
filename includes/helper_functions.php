@@ -50,6 +50,7 @@
     $_SESSION['first-name'] = $user['first-name'];
     $_SESSION['username'] = $user['username'];
     $_SESSION['email'] = $user['email'];
+    $_SESSION['memberID'] = $row['memberID'];
 
   }
 
@@ -90,6 +91,7 @@
         if (password_verify($user['password'], $row['password'])) {
           session_regenerate_id();
 
+          $_SESSION['memberID'] = $row['memberID'];
           $_SESSION['first-name'] = $row['firstName'];
           $_SESSION['username'] = $row['username'];
 
@@ -113,10 +115,13 @@
   function getProfileInformation($username, $connection) {
     $user_profile = [];
 
-    $stmt = $connection->prepare('SELECT * FROM members WHERE username = ? LIMIT 1');
-    $stmt->bind_param('s', $username);
-
-    $stmt->execute();
+    if ($stmt = $connection->prepare('SELECT * FROM members WHERE username = ? LIMIT 1')) {
+      $stmt->bind_param('s', $username);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
 
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
@@ -136,11 +141,50 @@
       $user_profile['wrists'] = $row['wrists'];
       $user_profile['ankles'] = $row['ankles'];
       $user_profile['bodyFat'] = $row['bodyFat'];
+      $user_profile['weight'] = $row['weight'];
     }
 
     $stmt->close();
 
     return $user_profile;
+  }
+
+  function saveUserProfileLog($user, $connection) {
+    $date = time();
+    $sql = "INSERT INTO memberlog (memberID, timestamp, leftArm, rightArm, chest, waist, leftThigh, rightThigh, leftCalf, rightCalf, shoulders, weight, bodyFat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $connection->prepare($sql);
+
+    if ($query = $connection->prepare($sql)) {
+       $stmt->bind_param('ddddddddddddd', $_SESSION['memberID'], $date, $user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
+         $user['rightCalf'], $user['shoulders'], $user['weight'], $user['bodyFat']);
+      $stmt->execute();
+
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $stmt->close();
+  }
+
+  function updateUserProfile($user, $connection) {
+    $sql = "UPDATE members SET leftArm = ?, rightArm = ?, chest = ?, waist = ?, leftThigh = ?, rightThigh = ?,
+      leftCalf = ?, rightCalf = ?, shoulders = ?, weight = ?, bodyFat = ?, wrists = ?, ankles = ?
+      WHERE username = ?";
+
+    $stmt = $connection->prepare($sql);
+    if ($query = $connection->prepare($sql)) {
+      $stmt->bind_param('ddddddddddddds',$user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
+        $user['rightCalf'], $user['shoulders'], $user['weight'], $user['bodyFat'], $user['wrists'], $user['ankles'], $_SESSION['username']);
+
+      $stmt->execute();
+
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $stmt->close();
   }
 
 ?>
