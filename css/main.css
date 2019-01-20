@@ -41,7 +41,14 @@ a {
   margin: 1rem;
 }
 
+<<<<<<< HEAD
 /* SELECTORS */
 .active {
   background-color: red;
 }
+=======
+/* HOME.PHP */
+.profile-info-group p  {
+  display: inline;
+}
+>>>>>>> 9adf92bafb569df5b42c34982070041429bf5aa8

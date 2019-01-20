@@ -18,11 +18,16 @@
 
     <nav class="profile-links">
       <ul>
-        <!-- Use php to check if username session variable is there.
-        If it isn't, display and this -->
-        <li><a href="login.php">Login</a></li>
-        <!-- otherwise display "Welcome "[username]" and this -->
-        <li><a href="#">Logout</a></li>
+        <?php
+          // Check if user is logged in
+          if (empty($_SESSION['first-name'])) {
+            echo "<li><a href=\"login.php\">Login</a></li>";
+            echo "<li><a href=\"register.php\">Register</a></li>";
+          } else {
+            echo "<li>Welcome " .$_SESSION['first-name']."</a></li>";
+            echo "<li><a href=\"logout.php\">Logout</a></li>";
+          }
+        ?>
       </ul>
     </nav>
 

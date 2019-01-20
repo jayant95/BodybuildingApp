@@ -43,51 +43,104 @@
     $stmt->bind_param('sssss', $user['first-name'], $user['last-name'], $user['email'], $user['username'], $hashed_password);
 
     $stmt->execute();
-
     $result = $stmt->get_result();
-    if ($result) {
-      echo "Registration was successful";
-      // Redirect to homepage after registration is complete
-      header("Location: home.php");
-    } else {
-      echo mysqli_error($connection);
-    }
+
+    $stmt->close();
+
+    $_SESSION['first-name'] = $user['first-name'];
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['email'] = $user['email'];
 
   }
 
-  function isExistingUsername($username, $connection) {
+  function isExistingUser($data, $connection, $column) {
     $error = "";
 
-    $stmt = $connection->prepare('SELECT * FROM members WHERE username = ?');
+    $stmt = $connection->prepare("SELECT * FROM members WHERE " .$column. " = ?");
+    $stmt->bind_param('s', $data);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      if ($row[$column] == $data) {
+        $error = "The " .$column. " you entered already exists.";
+        break;
+      }
+    }
+
+    $stmt->close();
+
+    return $error;
+  }
+
+  function loginByUsername($user, $connection) {
+    $error = "";
+    $validUsername = false;
+
+    $stmt = $connection->prepare('SELECT * FROM members WHERE username = ? LIMIT 1');
+    $stmt->bind_param('s', $user['username']);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $validUsername = true;
+      if ($row['username'] == $user['username']) {
+        if (password_verify($user['password'], $row['password'])) {
+          session_regenerate_id();
+
+          $_SESSION['first-name'] = $row['firstName'];
+          $_SESSION['username'] = $row['username'];
+
+          header("Location: home.php");
+        } else {
+          $error = "This password is incorrect";
+        }
+      } else {
+        $error = "This username is invalid";
+      }
+    }
+
+    if (!$validUsername) $error = "This username is invalid";
+
+    $stmt->close();
+    $connection->close();
+
+    return $error;
+  }
+
+  function getProfileInformation($username, $connection) {
+    $user_profile = [];
+
+    $stmt = $connection->prepare('SELECT * FROM members WHERE username = ? LIMIT 1');
     $stmt->bind_param('s', $username);
 
     $stmt->execute();
 
     $result = $stmt->get_result();
-    if (mysqli_num_rows($result) > 0) {
-      $error = "This username already exists";
+    while ($row = $result->fetch_assoc()) {
+      $user_profile['first-name'] = $row['firstName'];
+      $user_profile['last-name'] = $row['lastName'];
+      $user_profile['email'] = $row['email'];
+      $user_profile['username'] = $row['username'];
+      $user_profile['leftArm'] = $row['leftArm'];
+      $user_profile['rightArm'] = $row['rightArm'];
+      $user_profile['chest'] = $row['chest'];
+      $user_profile['waist'] = $row['waist'];
+      $user_profile['leftThigh'] = $row['leftThigh'];
+      $user_profile['rightThigh'] = $row['rightThigh'];
+      $user_profile['leftCalf'] = $row['leftCalf'];
+      $user_profile['rightCalf'] = $row['rightCalf'];
+      $user_profile['shoulders'] = $row['shoulders'];
+      $user_profile['wrists'] = $row['wrists'];
+      $user_profile['ankles'] = $row['ankles'];
+      $user_profile['bodyFat'] = $row['bodyFat'];
     }
-    $stmt->close();
-    // $connection->close();
 
-    return $error;
+    $stmt->close();
+
+    return $user_profile;
   }
 
-  function isExistingEmail($email, $connection) {
-    $error = "";
-
-    $stmt = $connection->prepare('SELECT * FROM members WHERE email = ?');
-    $stmt->bind_param('s', $email);
-
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-    if (mysqli_num_rows($result) > 0) {
-      $error = "This email already exists";
-    }
-    $stmt->close();
-    // $connection->close();
-
-    return $error;
-  }
 ?>
