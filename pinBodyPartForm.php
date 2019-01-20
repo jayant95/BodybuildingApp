@@ -1,9 +1,9 @@
 <?php
 	include_once("includes/db_connection.php");
 
-	 $memberID = "11";
-	 $goalID = "11";
-	 $bodybuilderName = $_POST['bodybuilder'];
+	$memberID = "11";
+	$goalID = "11";
+	// $bodybuilderName = $_POST['bodybuilder'];
 
 //	 echo $bodybuilderName;
 	// $featureName = $_POST['pin'];
@@ -65,13 +65,13 @@
 	$leftArm = 
 	*/
 
-	$stmt = $connection->prepare('INSERT INTO goals (memberID,goalID,bodyBuilderID) VALUES (?)');
-	$stmt->bind_param('iis', $memberID, $goalID,$bodybuilderName);
+	// $stmt = $connection->prepare('INSERT INTO goals (memberID,goalID,bodyBuilderID) VALUES (?)');
+	// $stmt->bind_param('iis', $memberID,$goalID,$bodybuilderName);
 
-	$stmt->execute();
-	$result = $stmt->get_result();
+	// $stmt->execute();
+	// $result = $stmt->get_result();
 
-	$stmt->close();
+	// $stmt->close();
 
 	// if (mysql_query("INSERT INTO bodybuilders VALUES('$goalID','$bodybuilderName','11','11','11','11','11','11','11','11')"))
 	// 	echo "Successfully inserted";
