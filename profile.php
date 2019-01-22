@@ -68,50 +68,50 @@
       <h3>Measurements</h3>
       <div class="profile-info-group">
         <label>Left Arm:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftArm' value=".$user_profile['leftArm']."" : "<p>".$user_profile['leftArm']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftArm' value=".$user_profile['leftArm'].">" : "<p>".$user_profile['leftArm']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Right Arm:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightArm' value=".$user_profile['rightArm']."" : "<p>".$user_profile['rightArm']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightArm' value=".$user_profile['rightArm'].">" : "<p>".$user_profile['rightArm']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Chest:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='chest' value=".$user_profile['chest']."" : "<p>".$user_profile['chest']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='chest' value=".$user_profile['chest'].">" : "<p>".$user_profile['chest']."</p>"; ?>
       <div class="profile-info-group">
         <label>Waist:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='waist' value=".$user_profile['waist']."" : "<p>".$user_profile['waist']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='waist' value=".$user_profile['waist'].">" : "<p>".$user_profile['waist']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Left Thigh:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftThigh' value=".$user_profile['leftThigh']."" : "<p>".$user_profile['leftThigh']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftThigh' value=".$user_profile['leftThigh'].">" : "<p>".$user_profile['leftThigh']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Right Thigh:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightThigh' value=".$user_profile['rightThigh']."" : "<p>".$user_profile['rightThigh']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightThigh' value=".$user_profile['rightThigh'].">" : "<p>".$user_profile['rightThigh']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Left Calf:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftCalf' value=".$user_profile['leftCalf']."" : "<p>".$user_profile['leftCalf']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftCalf' value=".$user_profile['leftCalf'].">" : "<p>".$user_profile['leftCalf']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Right Calf:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightCalf' value=".$user_profile['rightCalf']."" : "<p>".$user_profile['rightCalf']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightCalf' value=".$user_profile['rightCalf'].">" : "<p>".$user_profile['rightCalf']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Shoulders:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='shoulders' value=".$user_profile['shoulders']."" : "<p>".$user_profile['shoulders']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='shoulders' value=".$user_profile['shoulders'].">" : "<p>".$user_profile['shoulders']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Wrists:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='wrists' value=".$user_profile['wrists']."" : "<p>".$user_profile['wrists']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='wrists' value=".$user_profile['wrists'].">" : "<p>".$user_profile['wrists']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Ankles:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='ankles' value=".$user_profile['ankles']."" : "<p>".$user_profile['ankles']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='ankles' value=".$user_profile['ankles'].">" : "<p>".$user_profile['ankles']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Body Fat:</label>
-        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='bodyFat' value=".$user_profile['bodyFat']."" : "<p>".$user_profile['bodyFat']."</p>"; ?>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='bodyFat' value=".$user_profile['bodyFat'].">" : "<p>".$user_profile['bodyFat']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Weight:</label>
@@ -121,4 +121,44 @@
       <input class="profile-button" type="submit" name="save-log" value="Save to History">
     </div>
   </form>
+
+  <div class="measurement-history">
+    <h3>Measurement History</h3>
+    <table class="log-history-table">
+      <tr>
+        <th>Date</th>
+        <th>Left Arm</th>
+        <th>Right Arm</th>
+        <th>Chest</th>
+        <th>Shoulders</th>
+        <th>Waist</th>
+        <th>Left Thigh</th>
+        <th>Right Thigh</th>
+        <th>Left Calf</th>
+        <th>Right Calf</th>
+        <th>Weight</th>
+        <th>Body Fat</th>
+      </tr>
+      <?php
+        $log = getUserMeasurementLog($_SESSION['memberID'], $connection);
+        foreach($log as $row_array) {
+          $date = date('m/d/Y', $row_array['timestamp']);
+          echo "<tr>";
+          echo "<th>" . $date . "</th>";
+          echo "<th>" . $row_array['leftArm'] . "</th>";
+          echo "<th>" . $row_array['rightArm'] . "</th>";
+          echo "<th>" . $row_array['chest'] . "</th>";
+          echo "<th>" . $row_array['shoulders'] . "</th>";
+          echo "<th>" . $row_array['waist'] . "</th>";
+          echo "<th>" . $row_array['leftThigh'] . "</th>";
+          echo "<th>" . $row_array['rightThigh'] . "</th>";
+          echo "<th>" . $row_array['leftCalf'] . "</th>";
+          echo "<th>" . $row_array['rightCalf'] . "</th>";
+          echo "<th>" . $row_array['weight'] . "</th>";
+          echo "<th>" . $row_array['bodyFat'] . "</th>";
+          echo "</tr>";
+        }
+       ?>
+    </table>
+  </div>
 </div>

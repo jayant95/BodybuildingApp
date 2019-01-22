@@ -24,7 +24,7 @@
             echo "<li><a href=\"login.php\">Login</a></li>";
             echo "<li><a href=\"register.php\">Register</a></li>";
           } else {
-            echo "<li>Welcome " .$_SESSION['first-name']."</a></li>";
+            echo "<li><a href=\"profile.php\">Welcome " .$_SESSION['first-name']."</a></li>";
             echo "<li><a href=\"logout.php\">Logout</a></li>";
           }
         ?>

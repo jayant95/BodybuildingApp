@@ -50,8 +50,27 @@
     $_SESSION['first-name'] = $user['first-name'];
     $_SESSION['username'] = $user['username'];
     $_SESSION['email'] = $user['email'];
-    $_SESSION['memberID'] = $row['memberID'];
+    $_SESSION['memberID'] = getMemberID($user['username'], $connection);
 
+  }
+
+  function getMemberID($username, $connection) {
+    $memberID = -1;
+
+    if ($stmt = $connection->prepare('SELECT memberID FROM members WHERE username = ? LIMIT 1')) {
+      $stmt->bind_param('s', $username);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $memberID = $row['memberID'];
+    }
+
+    return $memberID;
   }
 
   function isExistingUser($data, $connection, $column) {
@@ -185,6 +204,42 @@
     }
 
     $stmt->close();
+  }
+
+  function getUserMeasurementLog($userID, $connection) {
+    $user_log = [];
+    $row_count = 0;
+
+    if ($stmt = $connection->prepare('SELECT * FROM memberlog WHERE memberID = ?')) {
+      $stmt->bind_param('s', $userID);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $user_row = [];
+      $user_row['timestamp'] = $row['timestamp'];
+      $user_row['leftArm'] = $row['leftArm'];
+      $user_row['rightArm'] = $row['rightArm'];
+      $user_row['chest'] = $row['chest'];
+      $user_row['waist'] = $row['waist'];
+      $user_row['leftThigh'] = $row['leftThigh'];
+      $user_row['rightThigh'] = $row['rightThigh'];
+      $user_row['shoulders'] = $row['shoulders'];
+      $user_row['leftCalf'] = $row['leftCalf'];
+      $user_row['rightCalf'] = $row['rightCalf'];
+      $user_row['weight'] = $row['weight'];
+      $user_row['bodyFat'] = $row['bodyFat'];
+
+      $user_log[$row_count] = $user_row;
+      $row_count++;
+    }
+
+    return $user_log;
+
   }
 
 ?>
