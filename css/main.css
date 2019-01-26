@@ -16,6 +16,7 @@ a {
 .content-wrapper {
   margin: 0 auto;
   width: 70%;
+  padding-bottom: 2rem;
 }
 
 /* HEADER.PHP */

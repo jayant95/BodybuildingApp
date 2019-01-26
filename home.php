@@ -28,7 +28,7 @@
 
   <div class="content-wrapper">
     <div class="main-features">
-      <a href="#">
+      <a href="pinBodyPart.php">
         <div class="site-feature">
           <div class="pin-muscle-group">
             <h2>Pin Muscle Group</h2>
@@ -44,7 +44,7 @@
           </div>
         </div>
       </a>
-      <a href="#">
+      <a href="muscleToMuscle.php">
         <div class="site-feature">
           <div class="muscle-to-muscle">
             <h2>Muscle to Muscle</h2>

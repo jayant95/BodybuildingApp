@@ -239,7 +239,54 @@
     }
 
     return $user_log;
+  }
 
+  function getBodybuilderStats($bodybuilderName, $connection) {
+    $stats = [];
+    $likeString = '%' . $bodybuilderName . '%';
+    $sql = "SELECT * FROM bodybuilders WHERE name LIKE ? LIMIT 1";
+
+    if ($stmt = $connection->prepare($sql)) {
+      $stmt->bind_param('s', $likeString);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $stats['name'] = $row['name'];
+      $stats['height'] = $row['height'];
+      $stats['contestWeight'] = $row['contestWeight'];
+      $stats['offseasonWeight'] = $row['offseasonWeight'];
+      $stats['arms'] = $row['arms'];
+      $stats['chest'] = $row['chest'];
+      $stats['waist'] = $row['waist'];
+      $stats['thighs'] = $row['thighs'];
+      $stats['calves'] = $row['calves'];
+    }
+
+    $stmt->close();
+
+    return $stats;
+  }
+
+  function getBodybuilderMuscleRatio($bodybuilder, $connection) {
+    $muscleRatio = 1;
+    $likeString = '%' . $bodybuilder['name'] . '%';
+    $sql = "SELECT "  . $bodybuilder['fromMuscle'] . ", " . $bodybuilder['resultMuscle'];
+    $sql .= " FROM bodybuilders WHERE name LIKE '" . $likeString . "' LIMIT 1";
+
+    $result = $connection->query($sql);
+
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        $muscleRatio = $row[$bodybuilder['fromMuscle']] / $row[$bodybuilder['resultMuscle']];
+      }
+    }
+
+    return $muscleRatio;
   }
 
 ?>
