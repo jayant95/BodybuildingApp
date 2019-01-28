@@ -19,6 +19,10 @@ a {
   padding-bottom: 2rem;
 }
 
+.validation-error {
+  color: red;
+}
+
 /* HEADER.PHP */
 .top-banner {
   background-color: rgb(240, 240, 240);
@@ -42,7 +46,12 @@ a {
   margin: 1rem;
 }
 
-/* HOME.PHP */
+/* PROFILE.PHP */
 .profile-info-group p  {
+  display: inline;
+}
+
+/* MUSCLETOMUSCLE.PHP */
+.muscle-input {
   display: inline;
 }

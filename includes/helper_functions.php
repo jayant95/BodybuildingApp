@@ -272,11 +272,25 @@
     return $stats;
   }
 
+  function getBodybuilderNames($connection) {
+    $bodybuilderName = [];
+    $sql = "SELECT name, nameCode FROM bodybuilders";
+
+    $result = $connection->query($sql);
+
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $bodybuilderName[$row['nameCode']] = $row['name'];
+      }
+    }
+
+    return $bodybuilderName;
+  }
+
   function getBodybuilderMuscleRatio($bodybuilder, $connection) {
     $muscleRatio = 1;
-    $likeString = '%' . $bodybuilder['name'] . '%';
     $sql = "SELECT "  . $bodybuilder['fromMuscle'] . ", " . $bodybuilder['resultMuscle'];
-    $sql .= " FROM bodybuilders WHERE name LIKE '" . $likeString . "' LIMIT 1";
+    $sql .= " FROM bodybuilders WHERE nameCode = '" . $bodybuilder['nameCode'] . "'";
 
     $result = $connection->query($sql);
 
