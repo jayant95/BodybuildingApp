@@ -118,6 +118,7 @@
         <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='weight' value=".$user_profile['weight'].">" : "<p>".$user_profile['weight']."</p>"; ?>
       </div>
       <?php echo $editActive ? "<input class='profile-button' type='submit' name='update' value='Update'/>" : "<input class='profile-button' type='submit' name='edit' value='Edit'/>" ;?>
+
       <input class="profile-button" type="submit" name="save-log" value="Save to History">
     </div>
   </form>
@@ -160,5 +161,8 @@
         }
        ?>
     </table>
+  </div>
+  <div class="upload-history">
+    <a href="profileHistory.php">Progress Pictures</a>
   </div>
 </div>

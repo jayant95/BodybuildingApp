@@ -51,7 +51,8 @@
     $_SESSION['username'] = $user['username'];
     $_SESSION['email'] = $user['email'];
     $_SESSION['memberID'] = getMemberID($user['username'], $connection);
-
+    $path = 'includes/uploads' . $_SESSION['username'] . "/" . date('F');
+    mkdir($path, 0777, true);
   }
 
   function getMemberID($username, $connection) {
