@@ -158,6 +158,7 @@
       $user_profile['leftCalf'] = $row['leftCalf'];
       $user_profile['rightCalf'] = $row['rightCalf'];
       $user_profile['shoulders'] = $row['shoulders'];
+      $user_profile['neck'] = $row['neck'];
       $user_profile['wrists'] = $row['wrists'];
       $user_profile['ankles'] = $row['ankles'];
       $user_profile['bodyFat'] = $row['bodyFat'];
@@ -171,12 +172,12 @@
 
   function saveUserProfileLog($user, $connection) {
     $date = time();
-    $sql = "INSERT INTO memberlog (memberID, timestamp, leftArm, rightArm, chest, waist, leftThigh, rightThigh, leftCalf, rightCalf, shoulders, weight, bodyFat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO memberlog (memberID, timestamp, leftArm, rightArm, chest, waist, leftThigh, rightThigh, leftCalf, rightCalf, shoulders, weight, bodyFat, neck) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $connection->prepare($sql);
 
     if ($query = $connection->prepare($sql)) {
-       $stmt->bind_param('ddddddddddddd', $_SESSION['memberID'], $date, $user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
-         $user['rightCalf'], $user['shoulders'], $user['weight'], $user['bodyFat']);
+       $stmt->bind_param('dddddddddddddd', $_SESSION['memberID'], $date, $user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
+         $user['rightCalf'], $user['shoulders'], $user['weight'], $user['bodyFat'], $user['neck']);
       $stmt->execute();
 
     } else {
@@ -189,13 +190,13 @@
 
   function updateUserProfile($user, $connection) {
     $sql = "UPDATE members SET leftArm = ?, rightArm = ?, chest = ?, waist = ?, leftThigh = ?, rightThigh = ?,
-      leftCalf = ?, rightCalf = ?, shoulders = ?, weight = ?, bodyFat = ?, wrists = ?, ankles = ?
+      leftCalf = ?, rightCalf = ?, shoulders = ?, neck = ?, weight = ?, bodyFat = ?, wrists = ?, ankles = ?
       WHERE username = ?";
 
     $stmt = $connection->prepare($sql);
     if ($query = $connection->prepare($sql)) {
-      $stmt->bind_param('ddddddddddddds',$user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
-        $user['rightCalf'], $user['shoulders'], $user['weight'], $user['bodyFat'], $user['wrists'], $user['ankles'], $_SESSION['username']);
+      $stmt->bind_param('dddddddddddddds',$user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
+        $user['rightCalf'], $user['shoulders'], $user['neck'], $user['weight'], $user['bodyFat'], $user['wrists'], $user['ankles'], $_SESSION['username']);
 
       $stmt->execute();
 
@@ -230,6 +231,7 @@
       $user_row['leftThigh'] = $row['leftThigh'];
       $user_row['rightThigh'] = $row['rightThigh'];
       $user_row['shoulders'] = $row['shoulders'];
+      $user_row['neck'] = $row['neck'];
       $user_row['leftCalf'] = $row['leftCalf'];
       $user_row['rightCalf'] = $row['rightCalf'];
       $user_row['weight'] = $row['weight'];

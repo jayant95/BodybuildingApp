@@ -28,6 +28,7 @@
     $user_profile['leftCalf'] = !empty($_POST['leftCalf']) ? $_POST['leftCalf'] : "";
     $user_profile['rightCalf'] = !empty($_POST['rightCalf']) ? $_POST['rightCalf'] : "";
     $user_profile['shoulders'] = !empty($_POST['shoulders']) ? $_POST['shoulders'] : "";
+    $user_profile['neck'] = !empty($_POST['neck']) ? $_POST['neck'] : "";
     $user_profile['wrists'] = !empty($_POST['wrists']) ? $_POST['wrists'] : "";
     $user_profile['ankles'] = !empty($_POST['ankles']) ? $_POST['ankles'] : "";
     $user_profile['bodyFat'] = !empty($_POST['bodyFat']) ? $_POST['bodyFat'] : "";
@@ -102,6 +103,10 @@
         <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='shoulders' value=".$user_profile['shoulders'].">" : "<p>".$user_profile['shoulders']."</p>"; ?>
       </div>
       <div class="profile-info-group">
+        <label>Neck:</label>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='neck' value=".$user_profile['neck'].">" : "<p>".$user_profile['neck']."</p>"; ?>
+      </div>
+      <div class="profile-info-group">
         <label>Wrists:</label>
         <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='wrists' value=".$user_profile['wrists'].">" : "<p>".$user_profile['wrists']."</p>"; ?>
       </div>
@@ -132,6 +137,7 @@
         <th>Right Arm</th>
         <th>Chest</th>
         <th>Shoulders</th>
+        <th>Neck</th>
         <th>Waist</th>
         <th>Left Thigh</th>
         <th>Right Thigh</th>
@@ -150,6 +156,7 @@
           echo "<th>" . $row_array['rightArm'] . "</th>";
           echo "<th>" . $row_array['chest'] . "</th>";
           echo "<th>" . $row_array['shoulders'] . "</th>";
+          echo "<th>" . $row_array['neck'] . "</th>";
           echo "<th>" . $row_array['waist'] . "</th>";
           echo "<th>" . $row_array['leftThigh'] . "</th>";
           echo "<th>" . $row_array['rightThigh'] . "</th>";
