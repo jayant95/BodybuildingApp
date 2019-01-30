@@ -31,6 +31,7 @@
     $user_profile['neck'] = !empty($_POST['neck']) ? $_POST['neck'] : "";
     $user_profile['wrists'] = !empty($_POST['wrists']) ? $_POST['wrists'] : "";
     $user_profile['ankles'] = !empty($_POST['ankles']) ? $_POST['ankles'] : "";
+    $user_profile['knee'] = !empty($_POST['knee']) ? $_POST['knee'] : "";
     $user_profile['bodyFat'] = !empty($_POST['bodyFat']) ? $_POST['bodyFat'] : "";
     $user_profile['weight'] = !empty($_POST['weight']) ? $_POST['weight'] : "";
     $user_profile['memberID'] = !empty($_SESSION['memberID']) ? $_SESSION['memberID'] : "";
@@ -109,6 +110,10 @@
       <div class="profile-info-group">
         <label>Wrists:</label>
         <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='wrists' value=".$user_profile['wrists'].">" : "<p>".$user_profile['wrists']."</p>"; ?>
+      </div>
+      <div class="profile-info-group">
+        <label>Knee:</label>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='knee' value=".$user_profile['knee'].">" : "<p>".$user_profile['knee']."</p>"; ?>
       </div>
       <div class="profile-info-group">
         <label>Ankles:</label>

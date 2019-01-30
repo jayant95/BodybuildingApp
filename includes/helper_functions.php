@@ -159,6 +159,7 @@
       $user_profile['rightCalf'] = $row['rightCalf'];
       $user_profile['shoulders'] = $row['shoulders'];
       $user_profile['neck'] = $row['neck'];
+      $user_profile['knee'] = $row['knee'];
       $user_profile['wrists'] = $row['wrists'];
       $user_profile['ankles'] = $row['ankles'];
       $user_profile['bodyFat'] = $row['bodyFat'];
@@ -190,13 +191,13 @@
 
   function updateUserProfile($user, $connection) {
     $sql = "UPDATE members SET leftArm = ?, rightArm = ?, chest = ?, waist = ?, leftThigh = ?, rightThigh = ?,
-      leftCalf = ?, rightCalf = ?, shoulders = ?, neck = ?, weight = ?, bodyFat = ?, wrists = ?, ankles = ?
+      leftCalf = ?, rightCalf = ?, shoulders = ?, neck = ?, weight = ?, bodyFat = ?, wrists = ?, ankles = ?, knee = ?
       WHERE username = ?";
 
     $stmt = $connection->prepare($sql);
     if ($query = $connection->prepare($sql)) {
-      $stmt->bind_param('dddddddddddddds',$user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
-        $user['rightCalf'], $user['shoulders'], $user['neck'], $user['weight'], $user['bodyFat'], $user['wrists'], $user['ankles'], $_SESSION['username']);
+      $stmt->bind_param('ddddddddddddddds',$user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
+        $user['rightCalf'], $user['shoulders'], $user['neck'], $user['weight'], $user['bodyFat'], $user['wrists'], $user['ankles'], $user['knee'], $_SESSION['username']);
 
       $stmt->execute();
 
