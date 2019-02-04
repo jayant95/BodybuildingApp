@@ -1,25 +1,6 @@
 <?php
   session_start();
   require_once("includes/db_connection.php");
-
-  /*
-  $sql = "SELECT * FROM bodybuilders";
-  $result = $connection->query($sql);
-
-  if ($result->num_rows > 0) {
-    // output data
-    while($row = $result->fetch_assoc()) {
-      echo "name: " . $row["name"];
-      echo "<br />";
-      echo "height: " . $row["height"] . " inch";
-      echo "<br />";
-      echo "<br />";
-    }
-  }
-
-  $connection->close();
-  */
-
 ?>
 
 
@@ -60,7 +41,7 @@
           </div>
         </div>
       </a>
-      <a href="#">
+      <a href="golden.php">
         <div class="site-feature">
           <div class="golden-ratio">
             <h2>Golden Ratio</h2>

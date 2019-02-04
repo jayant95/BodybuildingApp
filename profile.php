@@ -156,19 +156,19 @@
         foreach($log as $row_array) {
           $date = date('m/d/Y', $row_array['timestamp']);
           echo "<tr>";
-          echo "<th>" . $date . "</th>";
-          echo "<th>" . $row_array['leftArm'] . "</th>";
-          echo "<th>" . $row_array['rightArm'] . "</th>";
-          echo "<th>" . $row_array['chest'] . "</th>";
-          echo "<th>" . $row_array['shoulders'] . "</th>";
-          echo "<th>" . $row_array['neck'] . "</th>";
-          echo "<th>" . $row_array['waist'] . "</th>";
-          echo "<th>" . $row_array['leftThigh'] . "</th>";
-          echo "<th>" . $row_array['rightThigh'] . "</th>";
-          echo "<th>" . $row_array['leftCalf'] . "</th>";
-          echo "<th>" . $row_array['rightCalf'] . "</th>";
-          echo "<th>" . $row_array['weight'] . "</th>";
-          echo "<th>" . $row_array['bodyFat'] . "</th>";
+          echo "<td>" . $date . "</td>";
+          echo "<td>" . $row_array['leftArm'] . "</td>";
+          echo "<td>" . $row_array['rightArm'] . "</td>";
+          echo "<td>" . $row_array['chest'] . "</td>";
+          echo "<td>" . $row_array['shoulders'] . "</td>";
+          echo "<td>" . $row_array['neck'] . "</td>";
+          echo "<td>" . $row_array['waist'] . "</td>";
+          echo "<td>" . $row_array['leftThigh'] . "</td>";
+          echo "<td>" . $row_array['rightThigh'] . "</td>";
+          echo "<td>" . $row_array['leftCalf'] . "</td>";
+          echo "<td>" . $row_array['rightCalf'] . "</td>";
+          echo "<td>" . $row_array['weight'] . "</td>";
+          echo "<td>" . $row_array['bodyFat'] . "</td>";
           echo "</tr>";
         }
        ?>

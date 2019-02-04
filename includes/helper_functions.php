@@ -307,4 +307,89 @@
     return $muscleRatio;
   }
 
+  function getGoldenRatio($username, $connection) {
+    $bodyParts = [];
+    $goldenRatio = 1.618;
+
+    $sql = "SELECT waist, shoulders, chest, wrists, leftArm, leftCalf, neck, knee, leftThigh FROM members WHERE username = ?";
+
+    if ($stmt = $connection->prepare($sql)) {
+      $stmt->bind_param('s', $username);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $bodyParts['Waist'] = array(
+        "Part" => "Waist",
+        "Current" => $row['waist'] . " (constant)",
+        "Goal" => $row['waist'],
+        "Difference" => 0
+      );
+
+      $bodyParts['Shoulders'] = array(
+        "Part" => "Shoulders",
+        "Current" => $row['shoulders'],
+        "Goal" => round($row['waist'] * $goldenRatio, 2),
+        "Difference" => round(($row['waist'] * $goldenRatio) - $row['shoulders'], 2)
+      );
+
+      $bodyParts['Chest'] = array(
+        "Part" => "Chest",
+        "Current" => $row['chest'],
+        "Goal" => round($row['wrists'] * 6.5, 2),
+        "Difference" => round(($row['wrists'] * 6.5) - $row['chest'], 2)
+      );
+
+      $bodyParts['Wrists'] = array(
+        "Part" => "Wrists",
+        "Current" => $row['wrists'] . " (constant)",
+        "Goal" => $row['wrists'],
+        "Difference" => 0
+      );
+
+      $bodyParts['Arm'] = array(
+        "Part" => "Arm",
+        "Current" => $row['leftArm'],
+        "Goal" => round($row['wrists'] * 2.5, 2),
+        "Difference" => round(($row['wrists'] * 2.5) - $row['leftArm'], 2)
+      );
+
+      $bodyParts['Calf'] = array(
+        "Part" => "Calf",
+        "Current" => $row['leftCalf'],
+        "Goal" => round($row['wrists'] * 2.5, 2),
+        "Difference" => round(($row['wrists'] * 2.5) - $row['leftCalf'], 2)
+      );
+
+      $bodyParts['Neck'] = array(
+        "Part" => "Neck",
+        "Current" => $row['neck'],
+        "Goal" => round($row['wrists'] * 2.5, 2),
+        "Difference" => round(($row['wrists'] * 2.5) - $row['neck'], 2)
+      );
+
+      $bodyParts['Knee'] = array(
+        "Part" => "Knee",
+        "Current" => $row['knee'] . " (constant)",
+        "Goal" => $row['knee'],
+        "Difference" => 0
+      );
+
+      $bodyParts['Thigh'] = array(
+        "Part" => "Thigh",
+        "Current" => $row['leftThigh'],
+        "Goal" => round($row['knee'] * 1.75, 2),
+        "Difference" => round(($row['knee'] * 1.75) - $row['leftThigh'], 2)
+      );
+    }
+
+    $stmt->close();
+
+    return $bodyParts;
+  }
+
 ?>
