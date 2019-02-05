@@ -71,6 +71,7 @@
           echo "name: " . $row["name"];
           echo "<br />";
           echo "height: " . $row["height"] . " inch";
+          echo "<input class='bodybuilder-hidden-input' value='" . $row['name'] . "' type='hidden'>";
           echo "</a>";
           echo "</div>";
           echo "</div>";

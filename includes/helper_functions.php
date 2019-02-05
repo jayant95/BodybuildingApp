@@ -115,12 +115,25 @@
           $_SESSION['first-name'] = $row['firstName'];
           $_SESSION['username'] = $row['username'];
 
+          $_SESSION['leftArm'] = $row['leftArm'];
+          $_SESSION['rightArm'] = $row['rightArm'];
+          $_SESSION['chest'] = $row['chest'];
+          $_SESSION['waist'] = $row['waist'];
+          $_SESSION['leftThigh'] = $row['leftThigh'];
+          $_SESSION['rightThigh'] = $row['rightThigh'];
+          $_SESSION['leftCalf'] = $row['leftCalf'];
+          $_SESSION['rightCalf'] = $row['rightCalf'];
+          $_SESSION['shoulders'] = $row['shoulders'];
+          $_SESSION['weight'] = $row['weight'];
+          $_SESSION['bodyFat'] = $row['bodyFat'];
+
           header("Location: home.php");
         } else {
-          $error = "This password is incorrect";
+          // Don't volunteer what information is incorrect - username or pass
+          $error = "This information is incorrect";
         }
       } else {
-        $error = "This username is invalid";
+        $error = "This information is invalid";
       }
     }
 

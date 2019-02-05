@@ -13,11 +13,18 @@ $(document).ready(function(){
 		$(".bodybuilder.active").removeClass('active');
     	$(this).addClass('active');
 		bodybuilder = $(this).attr('id');
+
+		if ($(".bodybuilder-hidden-input").hasClass('active')) {
+			$('.bodybuilder-hidden-input.active').removeClass('active');
+			$(this).removeAttr('name');
+		}
+
+		$(this).find(".bodybuilder-hidden-input").addClass('active');
+		$(this).find(".bodybuilder-hidden-input.active").attr('name', 'bodybuilder');
 	});
 
 	$(".submit").click(function(e){
 		e.preventDefault();
-		alert(muscleGroup);
 
 		$.ajax({
 			type: "POST",

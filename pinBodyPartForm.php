@@ -1,9 +1,27 @@
 <?php
-	include_once("includes/db_connection.php");
+	session_start();
+	require("includes/header.php");
+	require("includes/db_connection.php");
+	require("includes/helper_functions.php");
 
-	$memberID = "11";
-	$goalID = "11";
+	// if (isset($_SESSION['username'])) {
+	// 	echo $_SESSION['memberID'];
+	// }
+
+	// $sql = "SELECT 
+	// 			memberID AS id
+	// 		FROM members";
+	// $members = $connection->query($sql);
+	// echo $members->id;
+
+
+	// $memberID = "11";
+
 	// $bodybuilderName = $_POST['bodybuilder'];
+
+
+
+
 
 //	 echo $bodybuilderName;
 	// $featureName = $_POST['pin'];
@@ -61,22 +79,37 @@
 
 	}
 
-
-	$leftArm = 
 	*/
 
-	// $stmt = $connection->prepare('INSERT INTO goals (memberID,goalID,bodyBuilderID) VALUES (?)');
-	// $stmt->bind_param('iis', $memberID,$goalID,$bodybuilderName);
+	// check if form is submitted
+	if (isset($_POST['submit'])) {
+		$memberID = $_SESSION['memberID'];
+		$goalID = "11";
+		// $memberID = "111";
+		// chosen bodybuilder has the 'name' attribute associated w hidden input
+		$bodybuilderName = $_POST['bodybuilder'];
 
-	// $stmt->execute();
-	// $result = $stmt->get_result();
+		$leftArm = $_SESSION['leftArm'];
+		$rightArm = $_SESSION['rightArm'];
+		$chest = $_SESSION['chest'];
+		$waist = $_SESSION['waist'];
+		$leftThigh = $_SESSION['leftThigh'];
+		$rightThigh = $_SESSION['rightThigh'];
+		$leftCalf = $_SESSION['leftCalf'];
+		$rightCalf = $_SESSION['rightCalf'];
+		$shoulders = $_SESSION['shoulders'];
+		$weight = $_SESSION['weight'];
+		$bodyFat = $_SESSION['bodyFat'];
+		
+		$stmt = $connection->prepare('INSERT INTO goals (memberID,goalID,bodyBuilderID,featureName,date,leftArm,rightArm,chest,waist,leftThigh,rightThigh,leftCalf,rightCalf,shoulders,weight,bodyFat) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+		$stmt->bind_param('iisssiiiiiiiiiii', $memberID,$goalID,$bodybuilderName,$featureName,$date,$leftArm,$rightArm,$chest,$waist,$leftThigh,$rightThigh,$leftCalf,$rightCalf,$shoulders,$weight,$bodyFat);
 
-	// $stmt->close();
+		$stmt->execute();
+		$result = $stmt->get_result();
 
-	// if (mysql_query("INSERT INTO bodybuilders VALUES('$goalID','$bodybuilderName','11','11','11','11','11','11','11','11')"))
-	// 	echo "Successfully inserted";
-	// else
-	// 	echo "Insertion Failed";
+				echo $bodybuilderName;
+		echo $memberID;
+	}
 
 
 ?>
