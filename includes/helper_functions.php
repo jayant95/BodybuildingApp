@@ -50,7 +50,28 @@
     $_SESSION['first-name'] = $user['first-name'];
     $_SESSION['username'] = $user['username'];
     $_SESSION['email'] = $user['email'];
+    $_SESSION['memberID'] = getMemberID($user['username'], $connection);
+    $path = 'includes/uploads/' . $_SESSION['username'] . "/" . date('F');
+    mkdir($path, 0777, true);
+  }
 
+  function getMemberID($username, $connection) {
+    $memberID = -1;
+
+    if ($stmt = $connection->prepare('SELECT memberID FROM members WHERE username = ? LIMIT 1')) {
+      $stmt->bind_param('s', $username);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $memberID = $row['memberID'];
+    }
+
+    return $memberID;
   }
 
   function isExistingUser($data, $connection, $column) {
@@ -90,6 +111,7 @@
         if (password_verify($user['password'], $row['password'])) {
           session_regenerate_id();
 
+          $_SESSION['memberID'] = $row['memberID'];
           $_SESSION['first-name'] = $row['firstName'];
           $_SESSION['username'] = $row['username'];
 
@@ -113,10 +135,13 @@
   function getProfileInformation($username, $connection) {
     $user_profile = [];
 
-    $stmt = $connection->prepare('SELECT * FROM members WHERE username = ? LIMIT 1');
-    $stmt->bind_param('s', $username);
-
-    $stmt->execute();
+    if ($stmt = $connection->prepare('SELECT * FROM members WHERE username = ? LIMIT 1')) {
+      $stmt->bind_param('s', $username);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
 
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
@@ -133,14 +158,238 @@
       $user_profile['leftCalf'] = $row['leftCalf'];
       $user_profile['rightCalf'] = $row['rightCalf'];
       $user_profile['shoulders'] = $row['shoulders'];
+      $user_profile['neck'] = $row['neck'];
+      $user_profile['knee'] = $row['knee'];
       $user_profile['wrists'] = $row['wrists'];
       $user_profile['ankles'] = $row['ankles'];
       $user_profile['bodyFat'] = $row['bodyFat'];
+      $user_profile['weight'] = $row['weight'];
     }
 
     $stmt->close();
 
     return $user_profile;
+  }
+
+  function saveUserProfileLog($user, $connection) {
+    $date = time();
+    $sql = "INSERT INTO memberlog (memberID, timestamp, leftArm, rightArm, chest, waist, leftThigh, rightThigh, leftCalf, rightCalf, shoulders, weight, bodyFat, neck) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $connection->prepare($sql);
+
+    if ($query = $connection->prepare($sql)) {
+       $stmt->bind_param('dddddddddddddd', $_SESSION['memberID'], $date, $user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
+         $user['rightCalf'], $user['shoulders'], $user['weight'], $user['bodyFat'], $user['neck']);
+      $stmt->execute();
+
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $stmt->close();
+  }
+
+  function updateUserProfile($user, $connection) {
+    $sql = "UPDATE members SET leftArm = ?, rightArm = ?, chest = ?, waist = ?, leftThigh = ?, rightThigh = ?,
+      leftCalf = ?, rightCalf = ?, shoulders = ?, neck = ?, weight = ?, bodyFat = ?, wrists = ?, ankles = ?, knee = ?
+      WHERE username = ?";
+
+    $stmt = $connection->prepare($sql);
+    if ($query = $connection->prepare($sql)) {
+      $stmt->bind_param('ddddddddddddddds',$user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
+        $user['rightCalf'], $user['shoulders'], $user['neck'], $user['weight'], $user['bodyFat'], $user['wrists'], $user['ankles'], $user['knee'], $_SESSION['username']);
+
+      $stmt->execute();
+
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $stmt->close();
+  }
+
+  function getUserMeasurementLog($userID, $connection) {
+    $user_log = [];
+    $row_count = 0;
+
+    if ($stmt = $connection->prepare('SELECT * FROM memberlog WHERE memberID = ?')) {
+      $stmt->bind_param('s', $userID);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $user_row = [];
+      $user_row['timestamp'] = $row['timestamp'];
+      $user_row['leftArm'] = $row['leftArm'];
+      $user_row['rightArm'] = $row['rightArm'];
+      $user_row['chest'] = $row['chest'];
+      $user_row['waist'] = $row['waist'];
+      $user_row['leftThigh'] = $row['leftThigh'];
+      $user_row['rightThigh'] = $row['rightThigh'];
+      $user_row['shoulders'] = $row['shoulders'];
+      $user_row['neck'] = $row['neck'];
+      $user_row['leftCalf'] = $row['leftCalf'];
+      $user_row['rightCalf'] = $row['rightCalf'];
+      $user_row['weight'] = $row['weight'];
+      $user_row['bodyFat'] = $row['bodyFat'];
+
+      $user_log[$row_count] = $user_row;
+      $row_count++;
+    }
+
+    return $user_log;
+  }
+
+  function getBodybuilderStats($bodybuilderName, $connection) {
+    $stats = [];
+    $likeString = '%' . $bodybuilderName . '%';
+    $sql = "SELECT * FROM bodybuilders WHERE name LIKE ? LIMIT 1";
+
+    if ($stmt = $connection->prepare($sql)) {
+      $stmt->bind_param('s', $likeString);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $stats['name'] = $row['name'];
+      $stats['height'] = $row['height'];
+      $stats['contestWeight'] = $row['contestWeight'];
+      $stats['offseasonWeight'] = $row['offseasonWeight'];
+      $stats['arms'] = $row['arms'];
+      $stats['chest'] = $row['chest'];
+      $stats['waist'] = $row['waist'];
+      $stats['thighs'] = $row['thighs'];
+      $stats['calves'] = $row['calves'];
+    }
+
+    $stmt->close();
+
+    return $stats;
+  }
+
+  function getBodybuilderNames($connection) {
+    $bodybuilderName = [];
+    $sql = "SELECT name, nameCode FROM bodybuilders";
+
+    $result = $connection->query($sql);
+
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $bodybuilderName[$row['nameCode']] = $row['name'];
+      }
+    }
+
+    return $bodybuilderName;
+  }
+
+  function getBodybuilderMuscleRatio($bodybuilder, $connection) {
+    $muscleRatio = 1;
+    $sql = "SELECT "  . $bodybuilder['fromMuscle'] . ", " . $bodybuilder['resultMuscle'];
+    $sql .= " FROM bodybuilders WHERE nameCode = '" . $bodybuilder['nameCode'] . "'";
+
+    $result = $connection->query($sql);
+
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        $muscleRatio = $row[$bodybuilder['fromMuscle']] / $row[$bodybuilder['resultMuscle']];
+      }
+    }
+
+    return $muscleRatio;
+  }
+
+  function getGoldenRatio($username, $connection) {
+    $bodyParts = [];
+    $goldenRatio = 1.618;
+
+    $sql = "SELECT waist, shoulders, chest, wrists, leftArm, leftCalf, neck, knee, leftThigh FROM members WHERE username = ?";
+
+    if ($stmt = $connection->prepare($sql)) {
+      $stmt->bind_param('s', $username);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $bodyParts['Waist'] = array(
+        "Part" => "Waist",
+        "Current" => $row['waist'] . " (constant)",
+        "Goal" => $row['waist'],
+        "Difference" => 0
+      );
+
+      $bodyParts['Shoulders'] = array(
+        "Part" => "Shoulders",
+        "Current" => $row['shoulders'],
+        "Goal" => round($row['waist'] * $goldenRatio, 2),
+        "Difference" => round(($row['waist'] * $goldenRatio) - $row['shoulders'], 2)
+      );
+
+      $bodyParts['Chest'] = array(
+        "Part" => "Chest",
+        "Current" => $row['chest'],
+        "Goal" => round($row['wrists'] * 6.5, 2),
+        "Difference" => round(($row['wrists'] * 6.5) - $row['chest'], 2)
+      );
+
+      $bodyParts['Wrists'] = array(
+        "Part" => "Wrists",
+        "Current" => $row['wrists'] . " (constant)",
+        "Goal" => $row['wrists'],
+        "Difference" => 0
+      );
+
+      $bodyParts['Arm'] = array(
+        "Part" => "Arm",
+        "Current" => $row['leftArm'],
+        "Goal" => round($row['wrists'] * 2.5, 2),
+        "Difference" => round(($row['wrists'] * 2.5) - $row['leftArm'], 2)
+      );
+
+      $bodyParts['Calf'] = array(
+        "Part" => "Calf",
+        "Current" => $row['leftCalf'],
+        "Goal" => round($row['wrists'] * 2.5, 2),
+        "Difference" => round(($row['wrists'] * 2.5) - $row['leftCalf'], 2)
+      );
+
+      $bodyParts['Neck'] = array(
+        "Part" => "Neck",
+        "Current" => $row['neck'],
+        "Goal" => round($row['wrists'] * 2.5, 2),
+        "Difference" => round(($row['wrists'] * 2.5) - $row['neck'], 2)
+      );
+
+      $bodyParts['Knee'] = array(
+        "Part" => "Knee",
+        "Current" => $row['knee'] . " (constant)",
+        "Goal" => $row['knee'],
+        "Difference" => 0
+      );
+
+      $bodyParts['Thigh'] = array(
+        "Part" => "Thigh",
+        "Current" => $row['leftThigh'],
+        "Goal" => round($row['knee'] * 1.75, 2),
+        "Difference" => round(($row['knee'] * 1.75) - $row['leftThigh'], 2)
+      );
+    }
+
+    $stmt->close();
+
+    return $bodyParts;
   }
 
 ?>
