@@ -8,7 +8,7 @@
 	// 	echo $_SESSION['memberID'];
 	// }
 
-	// $sql = "SELECT 
+	// $sql = "SELECT
 	// 			memberID AS id
 	// 		FROM members";
 	// $members = $connection->query($sql);
@@ -29,7 +29,7 @@
 	// $date = $_POST['0000'];
 
 /*
-	$sql = "SELECT 
+	$sql = "SELECT
 				bodybuilders.bodybuilderID AS bb_id,
 				bodybuilders.name AS bb_name,
 				bodybuilders.height AS bb_height,
@@ -49,7 +49,7 @@
 				members.leftCalf AS member_calf,
 				members.shoulders AS member_shoulders,
 				members.ankles AS member_ankles
-			FROM bodybuilders 
+			FROM bodybuilders
 			FULL OUTER JOIN members
 			ON members.$memberID = bodybuilders.$bodybuilderID
 			WHERE bodybuilders.name = $bodybuilderName
@@ -72,10 +72,10 @@
 			}
 
 			// Find member's ideal measurements - go into member table for their data
-			
+
 			}
 
-		
+
 
 	}
 
@@ -84,32 +84,79 @@
 	// check if form is submitted
 	if (isset($_POST['submit'])) {
 		$memberID = $_SESSION['memberID'];
-		$goalID = "11";
-		// $memberID = "111";
+
 		// chosen bodybuilder has the 'name' attribute associated w hidden input
 		$bodybuilderName = $_POST['bodybuilder'];
+		$pinnedMuscle = $_POST['bodypart'];
+		$bodybuilderStats = getBodybuilderStats($bodybuilderName, $connection);
+		$userStats = getProfileInformation($_SESSION['username'], $connection);
 
-		$leftArm = $_SESSION['leftArm'];
-		$rightArm = $_SESSION['rightArm'];
-		$chest = $_SESSION['chest'];
-		$waist = $_SESSION['waist'];
-		$leftThigh = $_SESSION['leftThigh'];
-		$rightThigh = $_SESSION['rightThigh'];
-		$leftCalf = $_SESSION['leftCalf'];
-		$rightCalf = $_SESSION['rightCalf'];
-		$shoulders = $_SESSION['shoulders'];
-		$weight = $_SESSION['weight'];
-		$bodyFat = $_SESSION['bodyFat'];
-		
-		$stmt = $connection->prepare('INSERT INTO goals (memberID,goalID,bodyBuilderID,featureName,date,leftArm,rightArm,chest,waist,leftThigh,rightThigh,leftCalf,rightCalf,shoulders,weight,bodyFat) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-		$stmt->bind_param('iisssiiiiiiiiiii', $memberID,$goalID,$bodybuilderName,$featureName,$date,$leftArm,$rightArm,$chest,$waist,$leftThigh,$rightThigh,$leftCalf,$rightCalf,$shoulders,$weight,$bodyFat);
+		$chestRatio = $bodybuilderStats['chest'] / $bodybuilderStats[$pinnedMuscle];
+		$armRatio = $bodybuilderStats['arms'] / $bodybuilderStats[$pinnedMuscle];
+		$waistRatio = $bodybuilderStats['waist'] / $bodybuilderStats[$pinnedMuscle];
+		$thighRatio = $bodybuilderStats['thighs'] / $bodybuilderStats[$pinnedMuscle];
+		$calfRatio = $bodybuilderStats['calves'] / $bodybuilderStats[$pinnedMuscle];
 
-		$stmt->execute();
-		$result = $stmt->get_result();
+		echo "<p>Results for pinning " . $pinnedMuscle . " using " . $bodybuilderName . "</p>";
 
-				echo $bodybuilderName;
-		echo $memberID;
+
+		if ($pinnedMuscle == "calves") {
+			$pinnedMuscle = "leftCalf";
+		} else if ($pinnedMuscle == "thighs") {
+			$pinnedMuscle = "leftThigh";
+		} else if ($pinnedMuscle == "arms") {
+			$pinnedMuscle = "leftArm";
+		}
+
+		$resultChest = $userStats[$pinnedMuscle] * $chestRatio;
+		$resultArms = $userStats[$pinnedMuscle] * $armRatio;
+		$resultWaist = $userStats[$pinnedMuscle] * $waistRatio;
+		$resultThighs = $userStats[$pinnedMuscle] * $thighRatio;
+		$resultCalves = $userStats[$pinnedMuscle] * $calfRatio;
 	}
 
 
 ?>
+
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Chest</th>
+		<th>Arms</th>
+		<th>Waist</th>
+		<th>Thighs</th>
+		<th>Calves</th>
+	</tr>
+	<tr>
+		<?php
+			echo "<td>" . $bodybuilderStats['name'] . "</td>";
+			echo "<td>" . $bodybuilderStats['chest'] . "</td>";
+			echo "<td>" . $bodybuilderStats['arms'] . "</td>";
+			echo "<td>" . $bodybuilderStats['waist'] . "</td>";
+			echo "<td>" . $bodybuilderStats['thighs'] . "</td>";
+			echo "<td>" . $bodybuilderStats['calves'] . "</td>";
+		 ?>
+	</tr>
+	<tr>
+		<?php
+			echo "<td>" . $userStats['first-name'] . " " . $userStats['last-name'] . "</td>";
+			echo "<td>" . $userStats['chest'] . "</td>";
+			echo "<td>" . $userStats['leftArm'] . "</td>";
+			echo "<td>" . $userStats['waist'] . "</td>";
+			echo "<td>" . $userStats['leftThigh'] . "</td>";
+			echo "<td>" . $userStats['leftCalf'] . "</td>";
+		 ?>
+	</tr>
+	<tr>
+		<?php
+			echo "<th>Result</th>";
+			echo "<td>" . round($resultChest, 2) . "</td>";
+			echo "<td>" . round($resultArms, 2) . "</td>";
+			echo "<td>" . round($resultWaist, 2) . "</td>";
+			echo "<td>" . round($resultThighs, 2) . "</td>";
+			echo "<td>" . round($resultCalves, 2) . "</td>";
+		 ?>
+	</tr>
+
+
+</table>

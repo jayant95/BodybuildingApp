@@ -114,7 +114,6 @@
           $_SESSION['memberID'] = $row['memberID'];
           $_SESSION['first-name'] = $row['firstName'];
           $_SESSION['username'] = $row['username'];
-
           $_SESSION['leftArm'] = $row['leftArm'];
           $_SESSION['rightArm'] = $row['rightArm'];
           $_SESSION['chest'] = $row['chest'];
@@ -260,11 +259,11 @@
 
   function getBodybuilderStats($bodybuilderName, $connection) {
     $stats = [];
-    $likeString = '%' . $bodybuilderName . '%';
-    $sql = "SELECT * FROM bodybuilders WHERE name LIKE ? LIMIT 1";
+    //$likeString = '%' . $bodybuilderName . '%';
+    $sql = "SELECT * FROM bodybuilders WHERE name = ?";
 
     if ($stmt = $connection->prepare($sql)) {
-      $stmt->bind_param('s', $likeString);
+      $stmt->bind_param('s', $bodybuilderName);
       $stmt->execute();
     } else {
       $error = $connection->errno . ' ' . $connection->error;

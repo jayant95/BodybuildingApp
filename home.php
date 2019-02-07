@@ -11,7 +11,7 @@
     <div class="main-features">
       <a href="pinBodyPart.php">
         <div class="site-feature">
-          <div class="pin-muscle-group">
+          <div class="pin-muscle-tab">
             <h2>Pin Muscle Group</h2>
             <p>Satisfied with a certain muscle group? Pin it! Let your other muscle groups catch up</p>
           </div>

@@ -2,8 +2,7 @@
   session_start();
   require_once("includes/db_connection.php");
 
-  $sql = "SELECT * FROM bodybuilders";
-  $result = $connection->query($sql);
+
 
 ?>
 
@@ -13,7 +12,7 @@
 
 
 
-    <div class="main-features">
+    <div class="bodypart-options">
       <h2>Pin Body Part</h2>
         <a href="#">
           <div class="site-feature">
@@ -50,8 +49,8 @@
             </div>
           </div>
         </a>
+        <input class="bodypart-hidden-input" name="bodypart" value="" type="hidden">
       </div>
-
 
 
 
@@ -60,6 +59,8 @@
   <h2>Bodybuilders</h2>
 
     <?php
+      $sql = "SELECT * FROM bodybuilders";
+      $result = $connection->query($sql);
       if ($result->num_rows > 0) {
         // output data
         while($row = $result->fetch_assoc()) {
@@ -71,7 +72,6 @@
           echo "name: " . $row["name"];
           echo "<br />";
           echo "height: " . $row["height"] . " inch";
-          echo "<input class='bodybuilder-hidden-input' value='" . $row['name'] . "' type='hidden'>";
           echo "</a>";
           echo "</div>";
           echo "</div>";
@@ -82,11 +82,12 @@
       $connection->close();
 
     ?>
+    <input class="bodybuilder-hidden-input" name="bodybuilder" value="" type="hidden">
 </div>
       <a href="#">
         <div class="site-feature">
             <input type="submit" id="submit" name="submit" value="Submit">
-            
+
         </div>
          </form>
       </a>
