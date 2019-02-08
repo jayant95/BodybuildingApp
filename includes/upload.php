@@ -34,13 +34,13 @@
       if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile)) {
         //echo "The file ". basename( $_FILES["photo"]["name"]). " has been uploaded.";
         $_SESSION['upload-message'] = "Your photo was successfully uploaded!";
-        header("Location: ../profileHistory.php");
+        header("Location: ../profile-history.php");
       } else {
         $_SESSION['upload-message'] = "Sorry, there was an error uploading your file. Only JPG, JPEG and PNG under 500kb.";
       }
     }
 
-    header("Location: ../profileHistory.php");
+    header("Location: ../profile-history.php");
 
 
 

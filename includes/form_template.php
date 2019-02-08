@@ -28,7 +28,7 @@
   function createBodybuilderForm($connection) {
     echo  "<div class='main-features'>";
     echo    "<h2>Bodybuilders</h2>";
-    
+
     $sql = "SELECT * FROM bodybuilders";
     $result = $connection->query($sql);
     if ($result->num_rows > 0) {

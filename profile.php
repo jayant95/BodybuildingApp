@@ -180,6 +180,6 @@
     </table>
   </div>
   <div class="upload-history">
-    <a href="profileHistory.php">Progress Pictures</a>
+    <a href="profile-history.php">Progress Pictures</a>
   </div>
 </div>
