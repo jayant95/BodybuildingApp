@@ -15,13 +15,6 @@ $(document).ready(function(){
     $(this).addClass('active');
 		bodybuilder = $(this).attr('id');
 		$('.bodybuilder-hidden-input').val(bodybuilder);
-		// if ($(".bodybuilder-hidden-input").hasClass('active')) {
-		// 	$('.bodybuilder-hidden-input.active').removeClass('active');
-		// 	$(this).removeAttr('name');
-		// }
-		//
-		// $(this).find(".bodybuilder-hidden-input").addClass('active');
-		// $(this).find(".bodybuilder-hidden-input.active").attr('name', 'bodybuilder');
 	});
 
 

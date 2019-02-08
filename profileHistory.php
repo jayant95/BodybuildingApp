@@ -1,7 +1,7 @@
 <?php
   session_start();
   require("includes/header.php");
-  require("includes/db_connection.php");
+  require_once("includes/db_connection.php");
 
   $pic_arr = array();
   $pic_counter = 0;

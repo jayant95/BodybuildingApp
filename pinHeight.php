@@ -7,10 +7,10 @@
 
 <form id='pinBodyPart' action='pin-result.php' method='post'>
 <?php
-  createBodyPartForm();
   createBodybuilderForm($connection);
-  $_SESSION['form-page'] = "bodypart";
+  $_SESSION['form-page'] = "height";
 ?>
 </form>
+
 
 <?php require("includes/footer.php");?>

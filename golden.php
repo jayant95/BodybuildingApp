@@ -1,7 +1,7 @@
 <?php
   session_start();
   require("includes/header.php");
-  require("includes/db_connection.php");
+  require_once("includes/db_connection.php");
   require("includes/helper_functions.php");
 
   if (isset($_SESSION['username'])) {

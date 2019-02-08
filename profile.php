@@ -34,6 +34,7 @@
     $user_profile['knee'] = !empty($_POST['knee']) ? $_POST['knee'] : "";
     $user_profile['bodyFat'] = !empty($_POST['bodyFat']) ? $_POST['bodyFat'] : "";
     $user_profile['weight'] = !empty($_POST['weight']) ? $_POST['weight'] : "";
+    $user_profile['height'] = !empty($_POST['height']) ? $_POST['height'] : "";
     $user_profile['memberID'] = !empty($_SESSION['memberID']) ? $_SESSION['memberID'] : "";
 
     updateUserProfile($user_profile, $connection);
@@ -126,6 +127,10 @@
       <div class="profile-info-group">
         <label>Weight:</label>
         <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='weight' value=".$user_profile['weight'].">" : "<p>".$user_profile['weight']."</p>"; ?>
+      </div>
+      <div class="profile-info-group">
+        <label>Height:</label>
+        <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='height' value=".$user_profile['height'].">" : "<p>".$user_profile['height']."</p>"; ?>
       </div>
       <?php echo $editActive ? "<input class='profile-button' type='submit' name='update' value='Update'/>" : "<input class='profile-button' type='submit' name='edit' value='Edit'/>" ;?>
 
