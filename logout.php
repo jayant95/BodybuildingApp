@@ -6,5 +6,6 @@
   unset($_SESSION['first-name']);
   unset($_SESSION['username']);
   unset($_SESSION['email']);
+  unset($_SESSION['redirect']);
   header("Location: home.php");
 ?>

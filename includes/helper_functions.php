@@ -115,19 +115,11 @@
           $_SESSION['first-name'] = $row['firstName'];
           $_SESSION['username'] = $row['username'];
 
-          // $_SESSION['leftArm'] = $row['leftArm'];
-          // $_SESSION['rightArm'] = $row['rightArm'];
-          // $_SESSION['chest'] = $row['chest'];
-          // $_SESSION['waist'] = $row['waist'];
-          // $_SESSION['leftThigh'] = $row['leftThigh'];
-          // $_SESSION['rightThigh'] = $row['rightThigh'];
-          // $_SESSION['leftCalf'] = $row['leftCalf'];
-          // $_SESSION['rightCalf'] = $row['rightCalf'];
-          // $_SESSION['shoulders'] = $row['shoulders'];
-          // $_SESSION['weight'] = $row['weight'];
-          // $_SESSION['bodyFat'] = $row['bodyFat'];
-
-          header("Location: home.php");
+          if (isset($_SESSION['redirect'])) {
+            header("Location: " . $_SESSION['redirect']);
+          } else {
+            header("Location: home.php");            
+          }
         } else {
           // Don't volunteer what information is incorrect - username or pass
           $error = "This information is incorrect";
@@ -404,6 +396,74 @@
     $stmt->close();
 
     return $bodyParts;
+  }
+
+  function getCurrentUserGoal($memberID, $connection) {
+    $goalMeasurements = [];
+
+    $sql = "SELECT * from goals WHERE memberID = ? AND currentGoal = 1";
+
+    if ($stmt = $connection->prepare($sql)) {
+      $stmt->bind_param('i', $memberID);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $goalMeasurements['bodybuilder'] = $row['bodybuilderName'];
+      $goalMeasurements['featureName'] = $row['featureName'];
+      $goalMeasurements['date'] = $row['date'];
+      $goalMeasurements['arms'] = $row['arms'];
+      $goalMeasurements['chest'] = $row['chest'];
+      $goalMeasurements['waist'] = $row['waist'];
+      $goalMeasurements['thighs'] = $row['thighs'];
+      $goalMeasurements['calves'] = $row['calves'];
+      $goalMeasurements['shoulders'] = $row['shoulders'];
+      $goalMeasurements['neck'] = $row['neck'];
+      $goalMeasurements['weight'] = $row['weight'];
+      $goalMeasurements['bodyFat'] = $row['bodyFat'];
+    }
+
+    if ($result->num_rows <= 0) {
+      return false;
+    }
+
+    return $goalMeasurements;
+  }
+
+  function unsetUserCurrentGoal($memberID, $connection) {
+    $sql = "UPDATE goals SET currentGoal = 0 WHERE memberID = ?";
+
+    if ($stmt = $connection->prepare($sql)) {
+      $stmt->bind_param('i', $memberID);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $stmt->close();
+  }
+
+  function updateUserGoal($goal, $connection) {
+    unsetUserCurrentGoal($goal['memberID'], $connection);
+
+    $sql = "INSERT INTO goals (memberID, bodybuilderID, bodybuilderName, featureName, currentGoal, date, arms, chest, waist, thighs, calves, shoulders, neck, weight, bodyFat) ";
+    $sql .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    if ($stmt = $connection->prepare($sql)) {
+      $stmt->bind_param('iissisddddddddd', $goal['memberID'], $goal['bodybuilderID'], $goal['bodybuilder'], $goal['featureName'], $goal['currentGoal'], $goal['date'], $goal['arms'],
+         $goal['chest'], $goal['waist'], $goal['thighs'], $goal['calves'], $goal['shoulders'], $goal['neck'], $goal['weight'], $goal['bodyfat']);
+        $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $stmt->close();
   }
 
 ?>
