@@ -33,7 +33,7 @@
 		$userNewGoal['currentGoal'] = 1;
 		$userNewGoal['date'] = time();
 
-		updateUserGoal($userNewGoal, $connection);
+		updateCustomUserGoal($userNewGoal, $connection);
 	}
 
   $userStats = getProfileInformation($_SESSION['username'], $connection);
@@ -77,39 +77,39 @@
 			?>
 		<div class="custom-stat-group">
 			<label>Chest:</label>
-			<?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='chest' value=". $userGoal['chest'] .">" : "<p>" . $userGoal['chest'] . "</p>"; ?>
+			<?php echo $editActive ? "<input class='profile-input' type='number' step='any' name='chest' value=". $userGoal['chest'] .">" : "<p>" . $userGoal['chest'] . "</p>"; ?>
 		</div>
 		<div class="custom-stat-group">
 			<label>Shoulders:</label>
-			<?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='shoulders' value=". $userGoal['shoulders'] .">" : "<p>" . $userGoal['shoulders'] . "</p>"; ?>
+			<?php echo $editActive ? "<input class='profile-input' type='number' step='any' name='shoulders' value=". $userGoal['shoulders'] .">" : "<p>" . $userGoal['shoulders'] . "</p>"; ?>
 		</div>
 		<div class="custom-stat-group">
 			<label>Neck:</label>
-			<?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='neck' value=". $userGoal['neck'] .">" : "<p>" . $userGoal['neck'] . "</p>"; ?>
+			<?php echo $editActive ? "<input class='profile-input' type='number' step='any' name='neck' value=". $userGoal['neck'] .">" : "<p>" . $userGoal['neck'] . "</p>"; ?>
 		</div>
 		<div class="custom-stat-group">
 			<label>Arms:</label>
-			<?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='arms' value=". $userGoal['arms'] .">" : "<p>" . $userGoal['arms'] . "</p>"; ?>
+			<?php echo $editActive ? "<input class='profile-input' type='number' step='any' name='arms' value=". $userGoal['arms'] .">" : "<p>" . $userGoal['arms'] . "</p>"; ?>
 		</div>
 		<div class="custom-stat-group">
 			<label>Waist:</label>
-			<?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='waist' value=". $userGoal['waist'] .">" : "<p>" . $userGoal['waist'] . "</p>"; ?>
+			<?php echo $editActive ? "<input class='profile-input' type='number' step='any' name='waist' value=". $userGoal['waist'] .">" : "<p>" . $userGoal['waist'] . "</p>"; ?>
 		</div>
 		<div class="custom-stat-group">
 			<label>Thighs:</label>
-			<?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='thighs' value=". $userGoal['thighs'] .">" : "<p>" . $userGoal['thighs'] . "</p>"; ?>
+			<?php echo $editActive ? "<input class='profile-input' type='number' step='any' name='thighs' value=". $userGoal['thighs'] .">" : "<p>" . $userGoal['thighs'] . "</p>"; ?>
 		</div>
 		<div class="custom-stat-group">
 			<label>Calves:</label>
-			<?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='calves' value=". $userGoal['calves'] .">" : "<p>" . $userGoal['calves'] . "</p>"; ?>
+			<?php echo $editActive ? "<input class='profile-input' type='number' step='any' name='calves' value=". $userGoal['calves'] .">" : "<p>" . $userGoal['calves'] . "</p>"; ?>
 		</div>
 		<div class="custom-stat-group">
 			<label>Weight:</label>
-			<?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='weight' value=". $userGoal['weight'] .">" : "<p>" . $userGoal['weight'] . "</p>"; ?>
+			<?php echo $editActive ? "<input class='profile-input' type='number' step='any' name='weight' value=". $userGoal['weight'] .">" : "<p>" . $userGoal['weight'] . "</p>"; ?>
 		</div>
 		<div class="custom-stat-group">
 			<label>Body Fat:</label>
-			<?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='bodyfat' value=". $userGoal['bodyFat'] .">" : "<p>" . $userGoal['bodyFat'] . "</p>"; ?>
+			<?php echo $editActive ? "<input class='profile-input' type='number' step='any' name='bodyfat' value=". $userGoal['bodyFat'] .">" : "<p>" . $userGoal['bodyFat'] . "</p>"; ?>
 		</div>
 		<div class="custom-stat-group">
 			<?php echo $editActive ? "<input class='profile-input' type='submit' name='update' value='Update Goal'>" : "<input class='profile-input' type='submit' name='edit' value='Edit Goal'>"; ?>

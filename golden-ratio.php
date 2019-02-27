@@ -26,7 +26,28 @@
     echo "<p>Please create an account and fill in the measurements in order to view your golden ratio</p>";
   }
 
+  if (isset($_POST['update'])) {
+    $goal['waist'] = $goldenBodyParts['Waist']['Goal'];
+    $goal['shoulders'] = $goldenBodyParts['Shoulders']['Goal'];
+    $goal['chest'] = $goldenBodyParts['Chest']['Goal'];
+    $goal['arms'] = $goldenBodyParts['Arm']['Goal'];
+    $goal['calves'] = $goldenBodyParts['Calf']['Goal'];
+    $goal['neck'] = $goldenBodyParts['Neck']['Goal'];
+    $goal['thighs'] = $goldenBodyParts['Thigh']['Goal'];
+    $goal['featureName'] = "Golden Ratio";
+    $goal['memberID'] = $_SESSION['memberID'];
+    $goal['currentGoal'] = 1;
+    $goal['date'] = time();
+    updateGoldenRatioGoal($goal, $connection);
+
+    header("Location: profile.php");
+  }
+?>
+
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+	<input class='profile-input' type='submit' name='update' value='Update Goal'>
+</form>
 
 
 
-require("includes/footer.php");
+<?php require("includes/footer.php"); ?>

@@ -9,6 +9,7 @@
 
   if (!empty($_SESSION['username'])) {
     $user_profile = getProfileInformation($_SESSION['username'], $connection);
+    $userGoal = getCurrentUserGoal($_SESSION['memberID'], $connection);
   } else {
     header("Location: login.php");
   }
@@ -49,6 +50,12 @@
 ?>
 
 <div class="content-wrapper">
+  <?php
+    if (isset($_SESSION['message'])) {
+      echo "<p>" . $_SESSION['message'] . "<p>";
+      unset($_SESSION['message']);
+    }
+   ?>
   <h2>Account Details</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
     <div class="profile-form">
@@ -137,6 +144,60 @@
       <input class="profile-button" type="submit" name="save-log" value="Save to History">
     </div>
   </form>
+
+  <h2>Current Goal</h2>
+  <div class="custom-stats">
+    <div class="custom-stat-group">
+      <label>Type:</label>
+      <?php echo $userGoal ? "<p>" . $userGoal['featureName'] . "</p>" : "<p>N/A</p>"; ?>
+    </div>
+      <?php
+        if ($userGoal) {
+          if ($userGoal['bodybuilder'] != NULL) {
+            echo "<div class='custom-stat-group'>";
+            echo 		"<label>Bodybuilder:</label>";
+            echo 		"<p>" . $userGoal['bodybuilder'] . "</p>";
+            echo "</div>";
+          }
+        }
+      ?>
+    <div class="custom-stat-group">
+      <label>Chest:</label>
+      <?php echo "<p>" . $userGoal['chest'] . "</p>"; ?>
+    </div>
+    <div class="custom-stat-group">
+      <label>Shoulders:</label>
+      <?php echo "<p>" . $userGoal['shoulders'] . "</p>"; ?>
+    </div>
+    <div class="custom-stat-group">
+      <label>Neck:</label>
+      <?php echo "<p>" . $userGoal['neck'] . "</p>"; ?>
+    </div>
+    <div class="custom-stat-group">
+      <label>Arms:</label>
+      <?php echo "<p>" . $userGoal['arms'] . "</p>"; ?>
+    </div>
+    <div class="custom-stat-group">
+      <label>Waist:</label>
+      <?php echo "<p>" . $userGoal['waist'] . "</p>"; ?>
+    </div>
+    <div class="custom-stat-group">
+      <label>Thighs:</label>
+      <?php echo "<p>" . $userGoal['thighs'] . "</p>"; ?>
+    </div>
+    <div class="custom-stat-group">
+      <label>Calves:</label>
+      <?php echo "<p>" . $userGoal['calves'] . "</p>"; ?>
+    </div>
+    <div class="custom-stat-group">
+      <label>Weight:</label>
+      <?php echo "<p>" . $userGoal['weight'] . "</p>"; ?>
+    </div>
+    <div class="custom-stat-group">
+      <label>Body Fat:</label>
+      <?php echo "<p>" . $userGoal['bodyFat'] . "</p>"; ?>
+    </div>
+  </div>
 
   <div class="measurement-history">
     <h3>Measurement History</h3>

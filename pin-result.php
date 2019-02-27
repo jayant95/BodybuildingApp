@@ -4,11 +4,9 @@
 	require_once("includes/db_connection.php");
 	require("includes/helper_functions.php");
 
-	// check if form is submitted
 	if (isset($_POST['submit'])) {
 		$formPage = !empty($_SESSION['form-page']) ? $_SESSION['form-page'] : "";
 		$memberID = $_SESSION['memberID'];
-
 
 		if ($formPage == "bodypart") {
 			$pinnedAttribute = $_POST['bodypart'];
@@ -41,9 +39,34 @@
 		$resultWaist = $userStats[$pinnedAttribute] * $waistRatio;
 		$resultThighs = $userStats[$pinnedAttribute] * $thighRatio;
 		$resultCalves = $userStats[$pinnedAttribute] * $calfRatio;
+
+		$userGoal['chest'] = $resultChest;
+		$userGoal['arms'] = $resultArms;
+		$userGoal['waist'] = $resultWaist;
+		$userGoal['thighs'] = $resultThighs;
+		$userGoal['calves'] = $resultCalves;
+		$userGoal['featureName'] = "Pin by " . $pinnedAttribute;
+		$userGoal['bodybuilder'] = $bodybuilderName;
+		$_SESSION['goal'] = $userGoal;
+	}
+
+	if (isset($_POST['update'])) {
+		$userGoal['chest'] = $_SESSION['goal']['chest'];
+		$userGoal['arms'] = $_SESSION['goal']['arms'];;
+		$userGoal['waist'] = $_SESSION['goal']['waist'];;
+		$userGoal['thighs'] = $_SESSION['goal']['thighs'];;
+		$userGoal['calves'] = $_SESSION['goal']['calves'];;
+		$userGoal['featureName'] = $_SESSION['goal']['featureName'];
+		$userGoal['bodybuilder'] = $_SESSION['goal']['bodybuilder'];
+		$userGoal['memberID'] = $_SESSION['memberID'];
+		$userGoal['currentGoal'] = 1;
+		$userGoal['date'] = time();
+		updateUserGoal($userGoal, $connection);
+
+		unset($_SESSION['goal']);
+		header("Location: profile.php");
 	}
 ?>
-
 <table>
 	<tr>
 		<th>Name</th>
@@ -84,7 +107,9 @@
 		 ?>
 	</tr>
 </table>
-
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+	<input class='profile-input' type='submit' name='update' value='Update Goal'>
+</form>
 	<!-- // if (isset($_SESSION['username'])) {
 	// 	echo $_SESSION['memberID'];
 	// }

@@ -118,7 +118,7 @@
           if (isset($_SESSION['redirect'])) {
             header("Location: " . $_SESSION['redirect']);
           } else {
-            header("Location: home.php");            
+            header("Location: home.php");
           }
         } else {
           // Don't volunteer what information is incorrect - username or pass
@@ -448,7 +448,7 @@
     $stmt->close();
   }
 
-  function updateUserGoal($goal, $connection) {
+  function updateCustomUserGoal($goal, $connection) {
     unsetUserCurrentGoal($goal['memberID'], $connection);
 
     $sql = "INSERT INTO goals (memberID, bodybuilderID, bodybuilderName, featureName, currentGoal, date, arms, chest, waist, thighs, calves, shoulders, neck, weight, bodyFat) ";
@@ -457,7 +457,8 @@
     if ($stmt = $connection->prepare($sql)) {
       $stmt->bind_param('iissisddddddddd', $goal['memberID'], $goal['bodybuilderID'], $goal['bodybuilder'], $goal['featureName'], $goal['currentGoal'], $goal['date'], $goal['arms'],
          $goal['chest'], $goal['waist'], $goal['thighs'], $goal['calves'], $goal['shoulders'], $goal['neck'], $goal['weight'], $goal['bodyfat']);
-        $stmt->execute();
+      $stmt->execute();
+      $_SESSION['message'] = "Your goal was updated successfully!";
     } else {
       $error = $connection->errno . ' ' . $connection->error;
       echo $error;
@@ -465,5 +466,46 @@
 
     $stmt->close();
   }
+
+  function updateUserGoal($goal, $connection) {
+    unsetUserCurrentGoal($goal['memberID'], $connection);
+
+    $sql = "INSERT INTO goals (memberID, bodybuilderName, featureName, currentGoal, date, arms, chest, waist, thighs, calves) ";
+    $sql .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    if ($stmt = $connection->prepare($sql)) {
+      $stmt->bind_param('issisddddd', $goal['memberID'], $goal['bodybuilder'], $goal['featureName'], $goal['currentGoal'], $goal['date'], $goal['arms'],
+         $goal['chest'], $goal['waist'], $goal['thighs'], $goal['calves']);
+      $stmt->execute();
+      $_SESSION['message'] = "Your goal was updated successfully!";
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $stmt->close();
+  }
+
+  function updateGoldenRatioGoal($goal, $connection) {
+    unsetUserCurrentGoal($goal['memberID'], $connection);
+
+    $sql = "INSERT INTO goals (memberID, featureName, currentGoal, date, arms, chest, waist, thighs, calves, neck, shoulders) ";
+    $sql .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    echo $sql;
+
+    if ($stmt = $connection->prepare($sql)) {
+      $stmt->bind_param('isisddddddd', $goal['memberID'], $goal['featureName'], $goal['currentGoal'], $goal['date'], $goal['arms'],
+         $goal['chest'], $goal['waist'], $goal['thighs'], $goal['calves'], $goal['neck'], $goal['shoulders']);
+        $stmt->execute();
+      $_SESSION['message'] = "Your goal was updated successfully!";
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $stmt->close();
+  }
+
+
 
 ?>
