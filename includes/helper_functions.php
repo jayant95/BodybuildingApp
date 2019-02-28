@@ -117,6 +117,7 @@
 
           if (isset($_SESSION['redirect'])) {
             header("Location: " . $_SESSION['redirect']);
+            unset($_SESSION['redirect']);
           } else {
             header("Location: home.php");
           }
