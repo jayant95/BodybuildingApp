@@ -53,7 +53,64 @@
     $_SESSION['memberID'] = getMemberID($user['username'], $connection);
     $path = 'includes/uploads/' . $_SESSION['username'] . "/" . date('F');
     mkdir($path, 0777, true);
+
+    setUserSettings($user, $connection);
   }
+
+  function setUserSettings($user, $connection) {
+    $memberID = getMemberID($user['username'], $connection);
+    $unit_default = "Inches";
+    $privacy_default = "Private";
+
+    if ($stmt = $connection->prepare('INSERT INTO settings (memberID, unit, privacy) VALUES (?, ?, ?)')) {
+      $stmt->bind_param('iss', $memberID, $unit_default, $privacy_default);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $stmt->close();
+  }
+
+  function getUserSettings($username, $connection) {
+    $memberID = getMemberID($username, $connection);
+    $settings = [];
+
+    if ($stmt = $connection->prepare('SELECT unit, privacy FROM settings WHERE memberID = ?')) {
+      $stmt->bind_param('i', $memberID);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $settings['unit'] = $row['unit'];
+      $settings['privacy'] = $row['privacy'];
+    }
+
+    $stmt->close();
+
+    return $settings;
+  }
+
+  function updateUserSettings($username, $settings, $connection) {
+    $memberID = getMemberID($username, $connection);
+
+    if ($stmt = $connection->prepare('UPDATE settings SET unit = ?, privacy = ? WHERE memberID = ?')) {
+      $stmt->bind_param('ssi', $settings['unit'], $settings['privacy'] , $memberID);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $stmt->close();
+  }
+
+
 
   function getMemberID($username, $connection) {
     $memberID = -1;
