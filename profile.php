@@ -74,70 +74,77 @@
       <p><?php echo $user_profile['username'] ?></p>
     </div>
     <h3>Measurements</h3>
-    <div class="profile-info-group">
-      <label>Left Arm:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftArm' value=".$user_profile['leftArm'].">" : "<p>".$user_profile['leftArm']."</p>"; ?>
+    <div class="profile-flexbox">
+      <div class="flexbox-panel">
+        <div class="profile-info-group">
+          <label>Left Arm:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftArm' value=".$user_profile['leftArm'].">" : "<p>".$user_profile['leftArm']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Right Arm:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightArm' value=".$user_profile['rightArm'].">" : "<p>".$user_profile['rightArm']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Chest:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='chest' value=".$user_profile['chest'].">" : "<p>".$user_profile['chest']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Waist:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='waist' value=".$user_profile['waist'].">" : "<p>".$user_profile['waist']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Left Thigh:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftThigh' value=".$user_profile['leftThigh'].">" : "<p>".$user_profile['leftThigh']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Right Thigh:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightThigh' value=".$user_profile['rightThigh'].">" : "<p>".$user_profile['rightThigh']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Left Calf:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftCalf' value=".$user_profile['leftCalf'].">" : "<p>".$user_profile['leftCalf']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Right Calf:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightCalf' value=".$user_profile['rightCalf'].">" : "<p>".$user_profile['rightCalf']."</p>"; ?>
+        </div>
+      </div>
+      <div class="flexbox-panel">
+        <div class="profile-info-group">
+          <label>Shoulders:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='shoulders' value=".$user_profile['shoulders'].">" : "<p>".$user_profile['shoulders']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Neck:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='neck' value=".$user_profile['neck'].">" : "<p>".$user_profile['neck']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Wrists:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='wrists' value=".$user_profile['wrists'].">" : "<p>".$user_profile['wrists']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Knee:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='knee' value=".$user_profile['knee'].">" : "<p>".$user_profile['knee']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Ankles:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='ankles' value=".$user_profile['ankles'].">" : "<p>".$user_profile['ankles']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Body Fat:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='bodyFat' value=".$user_profile['bodyFat'].">" : "<p>".$user_profile['bodyFat']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Weight:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='weight' value=".$user_profile['weight'].">" : "<p>".$user_profile['weight']."</p>"; ?>
+        </div>
+        <div class="profile-info-group">
+          <label>Height:</label>
+          <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='height' value=".$user_profile['height'].">" : "<p>".$user_profile['height']."</p>"; ?>
+        </div>
+      </div>
     </div>
-    <div class="profile-info-group">
-      <label>Right Arm:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightArm' value=".$user_profile['rightArm'].">" : "<p>".$user_profile['rightArm']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Chest:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='chest' value=".$user_profile['chest'].">" : "<p>".$user_profile['chest']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Waist:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='waist' value=".$user_profile['waist'].">" : "<p>".$user_profile['waist']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Left Thigh:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftThigh' value=".$user_profile['leftThigh'].">" : "<p>".$user_profile['leftThigh']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Right Thigh:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightThigh' value=".$user_profile['rightThigh'].">" : "<p>".$user_profile['rightThigh']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Left Calf:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='leftCalf' value=".$user_profile['leftCalf'].">" : "<p>".$user_profile['leftCalf']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Right Calf:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='rightCalf' value=".$user_profile['rightCalf'].">" : "<p>".$user_profile['rightCalf']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Shoulders:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='shoulders' value=".$user_profile['shoulders'].">" : "<p>".$user_profile['shoulders']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Neck:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='neck' value=".$user_profile['neck'].">" : "<p>".$user_profile['neck']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Wrists:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='wrists' value=".$user_profile['wrists'].">" : "<p>".$user_profile['wrists']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Knee:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='knee' value=".$user_profile['knee'].">" : "<p>".$user_profile['knee']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Ankles:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='ankles' value=".$user_profile['ankles'].">" : "<p>".$user_profile['ankles']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Body Fat:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='bodyFat' value=".$user_profile['bodyFat'].">" : "<p>".$user_profile['bodyFat']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Weight:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='weight' value=".$user_profile['weight'].">" : "<p>".$user_profile['weight']."</p>"; ?>
-    </div>
-    <div class="profile-info-group">
-      <label>Height:</label>
-      <?php echo $editActive ? "<input class='profile-input' type='number' step='0.01' name='height' value=".$user_profile['height'].">" : "<p>".$user_profile['height']."</p>"; ?>
-    </div>
+
     <?php echo $editActive ? "<input class='profile-button' type='submit' name='update' value='Update'/>" : "<input class='profile-button' type='submit' name='edit' value='Edit'/>" ;?>
     <input class="profile-button" type="submit" name="save-log" value="Save to History">
   </div>
@@ -145,55 +152,61 @@
 
 <h2>Current Goal</h2>
 <div class="custom-stats">
-  <div class="custom-stat-group">
-    <label>Type:</label>
-    <?php echo $userGoal ? "<p>" . $userGoal['featureName'] . "</p>" : "<p>N/A</p>"; ?>
-  </div>
-    <?php
-      if ($userGoal) {
-        if ($userGoal['bodybuilder'] != NULL) {
-          echo "<div class='custom-stat-group'>";
-          echo 		"<label>Bodybuilder:</label>";
-          echo 		"<p>" . $userGoal['bodybuilder'] . "</p>";
-          echo "</div>";
-        }
-      }
-    ?>
-  <div class="custom-stat-group">
-    <label>Chest:</label>
-    <?php echo "<p>" . $userGoal['chest'] . "</p>"; ?>
-  </div>
-  <div class="custom-stat-group">
-    <label>Shoulders:</label>
-    <?php echo "<p>" . $userGoal['shoulders'] . "</p>"; ?>
-  </div>
-  <div class="custom-stat-group">
-    <label>Neck:</label>
-    <?php echo "<p>" . $userGoal['neck'] . "</p>"; ?>
-  </div>
-  <div class="custom-stat-group">
-    <label>Arms:</label>
-    <?php echo "<p>" . $userGoal['arms'] . "</p>"; ?>
-  </div>
-  <div class="custom-stat-group">
-    <label>Waist:</label>
-    <?php echo "<p>" . $userGoal['waist'] . "</p>"; ?>
-  </div>
-  <div class="custom-stat-group">
-    <label>Thighs:</label>
-    <?php echo "<p>" . $userGoal['thighs'] . "</p>"; ?>
-  </div>
-  <div class="custom-stat-group">
-    <label>Calves:</label>
-    <?php echo "<p>" . $userGoal['calves'] . "</p>"; ?>
-  </div>
-  <div class="custom-stat-group">
-    <label>Weight:</label>
-    <?php echo "<p>" . $userGoal['weight'] . "</p>"; ?>
-  </div>
-  <div class="custom-stat-group">
-    <label>Body Fat:</label>
-    <?php echo "<p>" . $userGoal['bodyFat'] . "</p>"; ?>
+  <div class="profile-flexbox">
+    <div class="flexbox-panel">
+      <div class="custom-stat-group">
+        <label>Type:</label>
+        <?php echo $userGoal ? "<p>" . $userGoal['featureName'] . "</p>" : "<p>N/A</p>"; ?>
+      </div>
+        <?php
+          if ($userGoal) {
+            if ($userGoal['bodybuilder'] != NULL) {
+              echo "<div class='custom-stat-group'>";
+              echo 		"<label>Bodybuilder: </label>";
+              echo 		"<p>" . $userGoal['bodybuilder'] . "</p>";
+              echo "</div>";
+            }
+          }
+        ?>
+      <div class="custom-stat-group">
+        <label>Chest:</label>
+        <?php echo "<p>" . round($userGoal['chest'], 2) . "</p>"; ?>
+      </div>
+      <div class="custom-stat-group">
+        <label>Shoulders:</label>
+        <?php echo "<p>" . round($userGoal['shoulders'], 2) . "</p>"; ?>
+      </div>
+      <div class="custom-stat-group">
+        <label>Neck:</label>
+        <?php echo "<p>" . round($userGoal['neck'], 2) . "</p>"; ?>
+      </div>
+      <div class="custom-stat-group">
+        <label>Arms:</label>
+        <?php echo "<p>" . round($userGoal['arms'], 2) . "</p>"; ?>
+      </div>
+    </div>
+    <div class="flexbox-panel">
+      <div class="custom-stat-group">
+        <label>Waist:</label>
+        <?php echo "<p>" . round($userGoal['waist'], 2) . "</p>"; ?>
+      </div>
+      <div class="custom-stat-group">
+        <label>Thighs:</label>
+        <?php echo "<p>" . round($userGoal['thighs'], 2) . "</p>"; ?>
+      </div>
+      <div class="custom-stat-group">
+        <label>Calves:</label>
+        <?php echo "<p>" . round($userGoal['calves'], 2) . "</p>"; ?>
+      </div>
+      <div class="custom-stat-group">
+        <label>Weight:</label>
+        <?php echo "<p>" . round($userGoal['weight'], 2) . "</p>"; ?>
+      </div>
+      <div class="custom-stat-group">
+        <label>Body Fat:</label>
+        <?php echo "<p>" . round($userGoal['bodyFat'], 2) . "</p>"; ?>
+      </div>
+    </div>
   </div>
 </div>
 

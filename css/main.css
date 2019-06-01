@@ -50,13 +50,25 @@ a {
 .active {
   background-color: red;
 }
-=======
+
 /* HOME.PHP */
-=======
+
 /* PROFILE.PHP */
-.profile-info-group p  {
-  display: inline;
+
+.profile-info-group p, .custom-stat-group p {
+  display: inline-block;
 }
+
+.profile-flexbox {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.flexbox-panel  {
+  width: 50%;
+}
+
 
 /* MUSCLETOMUSCLE.PHP */
 .muscle-input {
