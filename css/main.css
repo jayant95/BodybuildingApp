@@ -2,6 +2,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: helvetica;
 }
 
 h1 {
@@ -15,8 +16,14 @@ a {
 
 .content-wrapper {
   margin: 0 auto;
-  width: 70%;
+  width: 100%;
   padding-bottom: 2rem;
+}
+
+@media screen and (min-width: 600px) {
+  .content-wrapper {
+    width: 70%;
+  }
 }
 
 .validation-error {
@@ -41,9 +48,26 @@ a {
 
 /* HOME.PHP */
 .site-feature {
-  background-color: rgb(200, 200, 200);
+  /* background-color: rgb(200, 200, 200); */
   padding: 1rem;
-  margin: 1rem;
+  text-align: center;
+  border-bottom: 2px solid black;
+  /* margin: 1rem 0rem; */
+}
+
+
+/* .feature-info {
+  width: 70%;
+}
+
+.feature-info-flex2 {
+  width: 25%;
+} */
+
+.feature-info-img img {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
 }
 
 /* SELECTORS */
