@@ -16,7 +16,7 @@ a {
 
 .content-wrapper {
   margin: 0 auto;
-  width: 100%;
+  max-width: 100%;
   padding-bottom: 2rem;
 }
 
@@ -47,34 +47,119 @@ a {
 }
 
 /* HOME.PHP */
-.site-feature {
-  /* background-color: rgb(200, 200, 200); */
-  padding: 1rem;
-  text-align: center;
-  border-bottom: 2px solid black;
-  /* margin: 1rem 0rem; */
-}
 
-
-/* .feature-info {
-  width: 70%;
-}
-
-.feature-info-flex2 {
+/* .feature-info-flex2 {
   width: 25%;
+}  */
+
+
+/* .frankenstein img {
+  width: 35%;
 } */
 
-.feature-info-img img {
-  display: block;
-  width: 50%;
-  margin: 0 auto;
+/* .frankenstein .feature-info {
+  padding-top: 1.5rem;
 }
+
+.golden-ratio .feature-info {
+  padding-top: 1rem;
+}
+
+.muscle-to-muscle .feature-info {
+  padding-top: 2rem;
+} */
 
 /* SELECTORS */
 .active {
   background-color: red;
 }
 
+/* .first-row.features img {
+  width: 30%;
+  display: inline-block;
+} */
+
+.first-row-features, .second-row-features {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.first-row-features {
+  padding-bottom: 2rem;
+}
+
+.site-feature {
+  margin: 0.5rem;
+  text-align: center;
+  border-bottom: 2px solid black;
+  width: 280px;
+  flex-grow: 1;
+  transition: 0.5s;
+}
+
+.second-row-features .site-feature {
+  width: 280px;
+}
+
+.site-feature img {
+  width: 50%;
+}
+
+.muscle-to-muscle img {
+  padding-bottom: 4.6rem;
+}
+
+.pin-muscle img {
+  width: 45%;
+  padding-bottom: 1.5rem;
+}
+
+.custom-feature img {
+  width: 60%;
+  padding-bottom: 3.5rem;
+}
+
+.golden-ratio img {
+  padding-bottom: 2.5rem;
+}
+
+.site-feature:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  transition-duration: 1s;
+}
+
+.site-feature:hover .feature-info-img {
+  background-color: rgb(245, 245, 245);
+  transition-duration: 1s;
+}
+
+.site-feature:hover .feature-info {
+  color: white;
+  transition: 0.5s;
+}
+
+.feature-info {
+  padding: 0 0.5rem;
+}
+
+.feature-info-img {
+  padding-top: 1rem;
+}
+
+
+
+
+/* .first-row-features .site-feature {
+  width: 46%;
+  display: inline-block;
+}
+
+.second-row-features .site-feature {
+  width: 29%;
+  display: inline-block;
+} */
 /* HOME.PHP */
 
 /* PROFILE.PHP */
