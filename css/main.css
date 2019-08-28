@@ -1,3 +1,24 @@
+polygon {
+  stroke: red;
+  fill: red;
+}
+
+.wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.wrap #svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* #svg {
+  position: relative;
+} */
+
+
 /* ALL PAGES */
 body {
   margin: 0;
