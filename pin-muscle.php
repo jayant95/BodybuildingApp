@@ -5,6 +5,11 @@
   require("includes/form_template.php");
 ?>
 
+<div id="map" class="body-map">
+</div>
+
+<h3 id="muscleGroup"></h3>
+
 <form id='pinBodyPart' action='pin-result.php' method='post'>
 <?php
   createBodyPartForm();
@@ -12,5 +17,6 @@
   $_SESSION['form-page'] = "bodypart";
 ?>
 </form>
+
 
 <?php require("includes/footer.php");?>

@@ -5,10 +5,10 @@
   require("includes/form_template.php");
 ?>
 
-<div class="wrap">
+<!-- <div class="wrap">
 <img src="img/bodybuilderBody.jpg" alt="" usemap="#bodyMap" class="bodyMap" width='700' height='588'/>
-<map name="bodyMap" id="Map">
-    <area shape="poly"
+<map name="bodyMap" id="Map"> -->
+    <!-- <area shape="poly"
         title="legs"
         href="#"
         class="leg-area"
@@ -63,7 +63,14 @@
 <svg id="svg">
 </svg>
 
+</div> -->
+
+<div id="map" class="body-map">
 </div>
+
+<h3 id="muscleGroup"></h3>
+
+
 <?php
   require("includes/footer.php");
  ?>

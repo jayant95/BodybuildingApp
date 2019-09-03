@@ -1,23 +1,12 @@
-polygon {
-  stroke: red;
+.body-map {
+  background-image: url(../img/fullBody.png);
+  background-repeat: no-repeat;
+}
+
+
+.active-body {
   fill: red;
 }
-
-.wrap {
-  position: relative;
-  display: inline-block;
-}
-
-.wrap #svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-/* #svg {
-  position: relative;
-} */
-
 
 /* ALL PAGES */
 body {
@@ -118,6 +107,7 @@ a {
   width: 280px;
   flex-grow: 1;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .second-row-features .site-feature {
