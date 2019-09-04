@@ -2,81 +2,90 @@ var rsr = Raphael('map', '640', '640');
 
 var sections = [];
 
-var left_arm = rsr.path("M208.4 191.72L88.47 191.72L47.79 177.96L13.37 108.08L44.66 44.46L83.25 54.89L66.56 103.91L83.25 148.76L114.54 125.81L159.39 125.81L211.53 143.54L208.4 191.72Z");
-left_arm.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1'}).data('id', 'left-arm');
-sections.push(left_arm);
-
-var right_arm = rsr.path("M416.13 191.35L536.07 191.35L576.75 177.59L611.17 107.71L579.88 44.09L541.29 54.52L557.98 103.54L541.29 148.39L510 125.44L465.15 125.44L413.01 143.17L416.13 191.35Z");
-right_arm.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1'}).data('id', 'right-arm');
-sections.push(right_arm);
-
-var chest = rsr.path("M400.31 138.53L400.31 211.53L234.48 211.53L234.48 138.53L298.1 111.41L336.69 111.41L400.31 138.53Z");
-chest.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1'}).data('id', 'chest');
+var chest = rsr.path("M249.38 320L393.26 320L464.49 195.17L178.63 195.17L249.38 320Z");
+chest.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1', 'stroke-width': '2'}).data('id', 'chest');
+chest.node.setAttribute("class", "chest-path");
 sections.push(chest);
 
-var waist = rsr.path("M234.48 223.01L400.31 223.01L400.31 298.1L234.48 298.1L234.48 223.01Z");
-waist.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1'}).data('id', 'waist');
+var waist = rsr.path("M250.81 373.31L392.79 373.31L392.79 329.48L250.81 329.48L250.81 373.31Z");
+waist.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1', 'stroke-width': '2'}).data('id', 'waist');
+waist.node.setAttribute("class", "waist-path");
 sections.push(waist);
 
-var leftLeg = rsr.path("M234.48 314.79L303.31 314.79L303.31 440.98L234.48 440.98L234.48 314.79Z");
-leftLeg.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1'}).data('id', 'left-leg');
+var leftLeg = rsr.path("M316.49 450.14L255.54 519.08L208.88 519.08L251.13 382.55L316.49 382.55L316.49 450.14Z");
+leftLeg.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1', 'stroke-width': '2'}).data('id', 'left-leg');
+leftLeg.node.setAttribute("class", "left-leg-path");
 sections.push(leftLeg);
 
-var rightLeg = rsr.path("M331.47 314.79L400.31 314.79L400.31 440.98L331.47 440.98L331.47 314.79Z");
-rightLeg.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1'}).data('id', 'right-leg');
+var rightLeg = rsr.path("M325.44 450.14L386.39 519.08L433.05 519.08L390.79 382.55L325.44 382.55L325.44 450.14Z");
+rightLeg.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1', 'stroke-width': '2'}).data('id', 'right-leg');
+rightLeg.node.setAttribute("class", "right-leg-path");
 sections.push(rightLeg);
 
-var leftCalf = rsr.path("M244.05 451.41L298.28 451.41L298.28 546.32L244.05 546.32L244.05 451.41Zd");
-leftCalf.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1'}).data('id', 'left-calf');
-sections.push(leftCalf);
-
-var rightCalf = rsr.path("M338.77 451.41L393.01 451.41L393.01 546.32L338.77 546.32L338.77 451.41Z");
-rightCalf.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1'}).data('id', 'right-calf');
+var rightCalf = rsr.path("M400.41 635.68L433.05 635.68L433.05 527.39L387.07 527.39L400.41 635.68Z");
+rightCalf.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1', 'stroke-width': '2'}).data('id', 'right-calf');
+rightCalf.node.setAttribute("class", "right-calf-path");
 sections.push(rightCalf);
 
+var leftCalf = rsr.path("M241.52 635.68L208.88 635.68L208.88 527.39L254.86 527.39L241.52 635.68Z");
+leftCalf.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1', 'stroke-width': '2'}).data('id', 'left-calf');
+leftCalf.node.setAttribute("class", "left-calf-path");
+sections.push(leftCalf);
 
+var leftArm = rsr.path("M136.84 197.42L120.75 176.58L92.58 176.58L67.43 197.42L56.37 179.52L92.58 123.7L77.49 110L6.07 176.58L48.32 249.05L200.22 249.05L170.04 197.42L136.84 197.42Z");
+leftArm.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1', 'stroke-width': '2'}).data('id', 'left-arm');
+leftArm.node.setAttribute("class", "left-arm-path");
+sections.push(leftArm);
 
+var rightArm = rsr.path("M507.16 195.42L523.25 174.58L551.42 174.58L576.57 195.42L587.63 177.52L551.42 121.7L566.51 108L637.93 174.58L595.68 247.05L443.78 247.05L473.96 195.42L507.16 195.42Z");
+rightArm.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1', 'stroke-width': '2'}).data('id', 'right-arm');
+rightArm.node.setAttribute("class", "right-arm-path");
+sections.push(rightArm);
 
+var head = rsr.path("M369.43 140.94C369.43 167.36 347.98 188.81 321.56 188.81C295.14 188.81 273.69 167.36 273.69 140.94C273.69 114.51 295.14 93.06 321.56 93.06C347.98 93.06 369.43 114.51 369.43 140.94Z");
+head.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1', 'stroke-width': '2'}).data('id', 'head');
 
-var clicked = 0;
 
 for (var i = 0; i < sections.length; i++) {
-
-    // Showing off
-  // sections[i].mouseover(function(e){
-  //   if (clicked % 2 == 0) {
-  //     this.node.style.fill = 'red';
-  //     this.node.style.opacity = 0.5;
-  //   }
-
-
-	// //	document.getElementById('region-name').innerHTML = this.data('region');
-  // });
-
-	// sections[i].mouseout(function(e){
-  //   if (clicked % 2 == 0) {
-  //     this.node.style.fill = "white";
-  //     this.node.style.opacity = 1;
-  //   }
-
-  // });
-  
   sections[i].mousedown(function(e){
+    bodyPairAddClass(this.data('id'));
+
       if ($('#map').children().children().hasClass('active-body')){
         $('#map').children().children().removeClass('active-body');
         this.node.classList.add("active-body");
         document.getElementById('muscleGroup').innerHTML = this.data('id');
+
+        var className = this.data('id');
+        bodyPairAddClass(className);
     } else {
         this.node.classList.add("active-body");
         document.getElementById('muscleGroup').innerHTML = this.data('id');
     }
-
-    
-
-    clicked++;
-    //this.node.style.fill = "red";
-  });
-  
-
+  }); 
 }
+
+function bodyPairAddClass(name) {
+  switch (name) {
+    case "left-arm":
+      $('.right-arm-path').addClass("active-body");
+      break;
+    case "right-arm":
+        $('.left-arm-path').addClass("active-body");
+        break;
+    case "left-leg":
+        $('.right-leg-path').addClass("active-body");
+        break;
+    case "right-leg":
+        $('.left-leg-path').addClass("active-body");
+        break;
+    case "left-calf":
+        $('.right-calf-path').addClass("active-body");
+            break;
+    case "right-calf":
+        $('.left-calf-path').addClass("active-body");
+            break;        
+  }
+}
+
+
 
