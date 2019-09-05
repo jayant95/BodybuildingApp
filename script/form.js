@@ -18,19 +18,8 @@ $(document).ready(function(){
 	});
 
 
-
-	// $(".submit").click(function(e){
-	// 	e.preventDefault();
-	//
-	// 	$.ajax({
-	// 		type: "POST",
-	// 		url: "pinBodyPartForm.php",
-	// 		data: {}
-	// 	})
-	// });
-
-	function validation() {
-		var muscleGroup = $(".pin-muscle-group.active").attr('id');
-		var bodybuilder = $(".bodybuilder.active").attr('id');
-	}
+	// function validation() {
+	// 	var muscleGroup = $(".pin-muscle-group.active").attr('id');
+	// 	var bodybuilder = $(".bodybuilder.active").attr('id');
+	// }
 });

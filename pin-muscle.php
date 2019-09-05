@@ -5,18 +5,28 @@
   require("includes/form_template.php");
 ?>
 
-<div id="map" class="body-map">
+<div class="feature-info">
+  <h2>Pin by Body Part</h2>
+  <p>Selecting a body part will pin that body part for you and your bodybuilder of choice. 
+    The results will show how your other muscle groups have to adapt in order to reach that physique.
+    If desired, new measurements can be set as your current goal.
+  </p>
 </div>
 
-<h3 id="muscleGroup"></h3>
 
 <form id='pinBodyPart' action='pin-result.php' method='post'>
-<?php
-  createBodyPartForm();
-  createBodybuilderForm($connection);
-  $_SESSION['form-page'] = "bodypart";
-?>
+  <div id="map" class="body-map bodybuilder-list">
+  </div>
+
+  <?php
+    createBodybuilderForm($connection);
+    $_SESSION['form-page'] = "bodypart";
+  ?>
 </form>
 
 
 <?php require("includes/footer.php");?>
+<script src="script/map.js"></script>
+<script>
+  $('#map').imageMapResize();
+</script>

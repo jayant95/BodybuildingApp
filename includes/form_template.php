@@ -26,8 +26,8 @@
   }
 
   function createBodybuilderForm($connection) {
-    echo  "<div class='main-features'>";
-    echo    "<h2>Bodybuilders</h2>";
+    echo  "<div class='bodybuilder-list'>";
+    // echo    "<h2>Bodybuilders</h2>";
 
     $sql = "SELECT * FROM bodybuilders";
     $result = $connection->query($sql);
@@ -35,9 +35,9 @@
       // output data
       while($row = $result->fetch_assoc()) {
         echo "<a href='#'>";
-        echo    "<div class='site-feature'>";
+        echo    "<div class='bodybuilder-name-list'>";
         echo      "<div class='bodybuilder' id='". $row["name"] . "'>";
-        echo        "<p>name: " . $row["name"] . "</p>";
+        echo        "<p>" . $row["name"] . "</p>";
         echo        "<p>height: " . $row["height"] . " inch</p>";
         echo      "</div>";
         echo    "</div>";
@@ -47,12 +47,13 @@
     $connection->close();
 
     echo    "<input class='bodybuilder-hidden-input' name='bodybuilder' value='' type='hidden'>";
-    echo  "</div>";
-
     echo  "<a href='#'>";
-    echo    "<div class='site-feature'>";
+    echo    "<div class='bodybuilder-name-list form-submit'>"; 
     echo      "<input type='submit' id='submit' name='submit' value='Submit'>";
     echo    "</div>";
     echo  "</a>";
+    echo  "</div>";
+
+ 
   }
  ?>

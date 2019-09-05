@@ -8,8 +8,10 @@
 		$formPage = !empty($_SESSION['form-page']) ? $_SESSION['form-page'] : "";
 		$memberID = $_SESSION['memberID'];
 
+		$bp = !empty($_COOKIE["bodyPart"]) ? $_COOKIE["bodyPart"] : "";
+
 		if ($formPage == "bodypart") {
-			$pinnedAttribute = $_POST['bodypart'];
+			$pinnedAttribute = $bp;
 		} else if ($formPage == "height") {
 			$pinnedAttribute = "height";
 		}
