@@ -3,6 +3,18 @@
   require("includes/header.php");
   require_once("includes/db_connection.php");
   require("includes/form_template.php");
+
+  if (isset($_POST['submit'])) {
+    $bodybuilderName = $_POST['bodybuilder'];
+
+    if (!empty($bodybuilderName)) {
+      $_SESSION['bodybuilder'] = $bodybuilderName;
+      $_SESSION['form-page'] = "height";
+
+      header('Location: pin-result.php');
+    }
+
+}
 ?>
 
 <div class="feature-info">
@@ -12,7 +24,7 @@
   </p>
 </div>
 
-<form id='pinBodyPart' action='pin-result.php' method='post'>
+<form id='pinBodyPart' action='<?php echo($_SERVER['PHP_SELF']) ?>' method='post'>
 <?php
   createBodybuilderForm($connection);
   $_SESSION['form-page'] = "height";

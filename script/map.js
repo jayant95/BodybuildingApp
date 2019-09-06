@@ -54,6 +54,8 @@ head.attr({fill: '#FFFFFF','stroke-width': '0','stroke-opacity': '1', 'stroke-wi
 
 for (var i = 0; i < sections.length; i++) {
   sections[i].mousedown(function(e){
+    var className = this.data('id');
+    createCookie("bodypart", className, 1);
     bodyPairAddClass(this.data('id'));
 
       if ($('#map').children().children().hasClass('active-body')){
@@ -61,11 +63,12 @@ for (var i = 0; i < sections.length; i++) {
         this.node.classList.add("active-body");
       
         var className = this.data('id');
-        createCookie("bodyPart", className, 1);
+        createCookie("bodypart", className, 1);
         bodyPairAddClass(className);
     } else {
         this.node.classList.add("active-body");
-        createCookie("bodyPart", className, 1);
+        var className = this.data('id');
+        createCookie("bodypart", className, 1);
     }
   }); 
 }
@@ -83,7 +86,13 @@ function bodyPairAddClass(name) {
     case "calves":
       $('.right-calf-path').addClass("active-body");
       $('.left-calf-path').addClass("active-body");
-      break;     
+      break;  
+    case "chest":
+      $('.chest-path').addClass("active-body");
+      break;
+    case "waist":
+      $('.waist-path').addClass("active-body");
+      break;
   }
 }
 

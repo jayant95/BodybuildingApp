@@ -4,6 +4,11 @@
   require_once("includes/db_connection.php");
   require_once("includes/helper_functions.php");
 
+  if (isset($_SESSION['message'])) {
+    echo "<p>" . $_SESSION['message'] . "<p>";
+    unset($_SESSION['message']);
+  }
+
 
   if (isset($_POST['submit'])) {
     $user['username'] = !empty($_POST['username']) ? $_POST['username'] : "";

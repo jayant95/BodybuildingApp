@@ -4,11 +4,16 @@
 	require_once("includes/db_connection.php");
 	require("includes/helper_functions.php");
 
-	if (isset($_POST['submit'])) {
+	// if (isset($_POST['submit'])) {
+		if (!isset($_SESSION['username'])) {
+			header("Location: login.php");
+			$_SESSION['message'] = "Please sign in to view your results!";
+		}
+	
 		$formPage = !empty($_SESSION['form-page']) ? $_SESSION['form-page'] : "";
 		$memberID = $_SESSION['memberID'];
 
-		$bp = !empty($_COOKIE["bodyPart"]) ? $_COOKIE["bodyPart"] : "";
+		$bp = !empty($_SESSION["bodypart"]) ? $_SESSION["bodypart"] : "";
 
 		if ($formPage == "bodypart") {
 			$pinnedAttribute = $bp;
@@ -16,7 +21,7 @@
 			$pinnedAttribute = "height";
 		}
 
-		$bodybuilderName = $_POST['bodybuilder'];
+		$bodybuilderName = $_SESSION['bodybuilder'];
 		$bodybuilderStats = getBodybuilderStats($bodybuilderName, $connection);
 		$userStats = getProfileInformation($_SESSION['username'], $connection);
 
@@ -50,7 +55,7 @@
 		$userGoal['featureName'] = "Pin by " . $pinnedAttribute;
 		$userGoal['bodybuilder'] = $bodybuilderName;
 		$_SESSION['goal'] = $userGoal;
-	}
+	// }
 
 	if (isset($_POST['update'])) {
 		$userGoal['chest'] = $_SESSION['goal']['chest'];
