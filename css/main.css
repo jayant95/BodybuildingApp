@@ -203,6 +203,17 @@ a {
   color: rgb(225, 0, 0);
 }
 
+.input-label {
+  display: block;
+  color: white;
+  padding-bottom: 0.3rem;
+}
+
+.input-label.small {
+  display: block;
+  font-size: 0.6rem;
+}
+
 
 
 /* HOME.PHP */
