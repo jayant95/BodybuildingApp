@@ -4,6 +4,8 @@
 	require_once("includes/db_connection.php");
 	require("includes/helper_functions.php");
 
+	echo "<div class='content-wrapper'>";
+	
 	// if (isset($_POST['submit'])) {
 		if (!isset($_SESSION['username'])) {
 			header("Location: login.php");
@@ -74,48 +76,50 @@
 		header("Location: profile.php");
 	}
 ?>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Chest</th>
-		<th>Arms</th>
-		<th>Waist</th>
-		<th>Thighs</th>
-		<th>Calves</th>
-	</tr>
-	<tr>
-		<?php
-			echo "<td>" . $bodybuilderStats['name'] . "</td>";
-			echo "<td>" . $bodybuilderStats['chest'] . "</td>";
-			echo "<td>" . $bodybuilderStats['arms'] . "</td>";
-			echo "<td>" . $bodybuilderStats['waist'] . "</td>";
-			echo "<td>" . $bodybuilderStats['thighs'] . "</td>";
-			echo "<td>" . $bodybuilderStats['calves'] . "</td>";
-		 ?>
-	</tr>
-	<tr>
-		<?php
-			echo "<td>" . $userStats['first-name'] . " " . $userStats['last-name'] . "</td>";
-			echo "<td>" . $userStats['chest'] . "</td>";
-			echo "<td>" . $userStats['leftArm'] . "</td>";
-			echo "<td>" . $userStats['waist'] . "</td>";
-			echo "<td>" . $userStats['leftThigh'] . "</td>";
-			echo "<td>" . $userStats['leftCalf'] . "</td>";
-		 ?>
-	</tr>
-	<tr>
-		<?php
-			echo "<th>Result</th>";
-			echo "<td>" . round($resultChest, 2) . "</td>";
-			echo "<td>" . round($resultArms, 2) . "</td>";
-			echo "<td>" . round($resultWaist, 2) . "</td>";
-			echo "<td>" . round($resultThighs, 2) . "</td>";
-			echo "<td>" . round($resultCalves, 2) . "</td>";
-		 ?>
-	</tr>
-</table>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-	<input class='profile-input' type='submit' name='update' value='Update Goal'>
-</form>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Chest</th>
+			<th>Arms</th>
+			<th>Waist</th>
+			<th>Thighs</th>
+			<th>Calves</th>
+		</tr>
+		<tr>
+			<?php
+				echo "<td>" . $bodybuilderStats['name'] . "</td>";
+				echo "<td>" . $bodybuilderStats['chest'] . "</td>";
+				echo "<td>" . $bodybuilderStats['arms'] . "</td>";
+				echo "<td>" . $bodybuilderStats['waist'] . "</td>";
+				echo "<td>" . $bodybuilderStats['thighs'] . "</td>";
+				echo "<td>" . $bodybuilderStats['calves'] . "</td>";
+			?>
+		</tr>
+		<tr>
+			<?php
+				echo "<td>" . $userStats['first-name'] . " " . $userStats['last-name'] . "</td>";
+				echo "<td>" . $userStats['chest'] . "</td>";
+				echo "<td>" . $userStats['leftArm'] . "</td>";
+				echo "<td>" . $userStats['waist'] . "</td>";
+				echo "<td>" . $userStats['leftThigh'] . "</td>";
+				echo "<td>" . $userStats['leftCalf'] . "</td>";
+			?>
+		</tr>
+		<tr>
+			<?php
+				echo "<th>Result</th>";
+				echo "<td>" . round($resultChest, 2) . "</td>";
+				echo "<td>" . round($resultArms, 2) . "</td>";
+				echo "<td>" . round($resultWaist, 2) . "</td>";
+				echo "<td>" . round($resultThighs, 2) . "</td>";
+				echo "<td>" . round($resultCalves, 2) . "</td>";
+			?>
+		</tr>
+	</table>
+	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+		<input class='profile-input' type='submit' name='update' value='Update Goal'>
+	</form>
+
+</div>
 
 <?php require("includes/footer.php"); ?>

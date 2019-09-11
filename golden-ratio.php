@@ -4,6 +4,8 @@
   require_once("includes/db_connection.php");
   require("includes/helper_functions.php");
 
+  echo "<div class='content-wrapper'>";
+
   if (isset($_SESSION['username'])) {
     echo "<table class='ratio-table'>";
     echo "<tr>";
@@ -44,9 +46,11 @@
   }
 ?>
 
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-	<input class='profile-input' type='submit' name='update' value='Update Goal'>
-</form>
+
+  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+    <input class='profile-input' type='submit' name='update' value='Update Goal'>
+  </form>
+</div>
 
 
 

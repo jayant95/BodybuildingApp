@@ -42,35 +42,36 @@
     unset($_SESSION['upload-message']);
   }
 ?>
+<div class="content-wrapper">
+  <form action="includes/upload.php" method="post" enctype="multipart/form-data">
+    <div class="upload-form">
+      <input type="file" name="photo">
+      <input type="submit" name="submit" value="Submit"/>
+    </div>
+  </form>
 
-<form action="includes/upload.php" method="post" enctype="multipart/form-data">
-  <div class="upload-form">
-    <input type="file" name="photo">
-    <input type="submit" name="submit" value="Submit"/>
-  </div>
-</form>
+  <div class="upload-history">
+    <?php
+      ksort($pic_arr);
 
-<div class="upload-history">
-  <?php
-    ksort($pic_arr);
+      $fileDate = "";
+      foreach ($pic_arr as $dateKey => $name) {
+        $temp = date("F Y", $dateKey);
+        if ($temp !== $fileDate) {
+          $fileDate = date("F Y", $dateKey);
+          echo "<p>" . $fileDate . "</p>";
+        }
 
-    $fileDate = "";
-    foreach ($pic_arr as $dateKey => $name) {
-      $temp = date("F Y", $dateKey);
-      if ($temp !== $fileDate) {
-        $fileDate = date("F Y", $dateKey);
-        echo "<p>" . $fileDate . "</p>";
+        echo "<img src=" . $name . " class='progress-pic' alt='progress-pic'>";
       }
+    ?>
+  </div>
 
-      echo "<img src=" . $name . " class='progress-pic' alt='progress-pic'>";
-    }
-   ?>
-</div>
-
-<div id="imgModal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="modal-progressImg">
-  <div id="caption"></div>
+  <div id="imgModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-progressImg">
+    <div id="caption"></div>
+  </div>
 </div>
 
 

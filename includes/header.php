@@ -32,4 +32,4 @@
     </nav>
   </div>
 
-  <div class="content-wrapper">
+  <!-- <div class="content-wrapper"> -->

@@ -30,26 +30,27 @@
 ?>
 
 
-
-<div class="feature-info">
-  <h2>Pin by Body Part</h2>
-  <p>Selecting a body part will pin that body part for you and your bodybuilder of choice. 
-    The results will show how your other muscle groups have to adapt in order to reach that physique.
-    If desired, new measurements can be set as your current goal.
-  </p>
-</div>
-
-<p id="hidden-part" hidden></p>
-
-
-<form id='pinBodyPart' action='<?php echo($_SERVER['PHP_SELF']) ?>' method='post'>
-  <div id="map" class="body-map bodybuilder-list">
+<div class="content-wrapper">
+  <div class="feature-info">
+    <h2>Pin by Body Part</h2>
+    <p>Selecting a body part will pin that body part for you and your bodybuilder of choice. 
+      The results will show how your other muscle groups have to adapt in order to reach that physique.
+      If desired, new measurements can be set as your current goal.
+    </p>
   </div>
 
-  <?php
-    createBodybuilderForm($connection);
-  ?>
-</form>
+  <p id="hidden-part" hidden></p>
+
+
+  <form id='pinBodyPart' action='<?php echo($_SERVER['PHP_SELF']) ?>' method='post'>
+    <div id="map" class="body-map bodybuilder-list">
+    </div>
+
+    <?php
+      createBodybuilderForm($connection);
+    ?>
+  </form>
+</div>
 
 <?php require("includes/footer.php");?>
 <script src="script/map.js"></script>

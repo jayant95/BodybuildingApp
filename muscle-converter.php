@@ -23,67 +23,69 @@
   }
 ?>
 
-<form class="muscle-converter-form" action="#" method="post">
-  <div>
-    <label>Bodybuilder Ratio</label>
-    <select name="bodybuilder-name">
+<div class="content-wrapper">
+  <form class="muscle-converter-form" action="#" method="post">
+    <div>
+      <label>Bodybuilder Ratio</label>
+      <select name="bodybuilder-name">
+        <?php
+          foreach ($bodybuilderNames as $nameKey => $name) {
+            if ($nameKey == $bodybuilder['nameCode']) {
+              echo "<option value=" . $nameKey . " selected>" . $name . "</option>";
+            } else {
+              echo "<option value=" . $nameKey . ">" . $name . "</option>";
+            }
+          }
+        ?>
+      </select>
+    </div>
+
+    <label>From:</label>
+    <select name="from-muscle">
       <?php
-        foreach ($bodybuilderNames as $nameKey => $name) {
-          if ($nameKey == $bodybuilder['nameCode']) {
-            echo "<option value=" . $nameKey . " selected>" . $name . "</option>";
+        $muscleGroup = [
+          "arms" => "Arms",
+          "chest" => "Chest",
+          "waist" => "Waist",
+          "thighs" => "Legs",
+          "calves" => "Calves",
+        ];
+
+        foreach ($muscleGroup as $key => $value) {
+          if ($key == $bodybuilder['fromMuscle']) {
+            echo "<option value=" . $key . " selected>" . $value . "</option>";
           } else {
-            echo "<option value=" . $nameKey . ">" . $name . "</option>";
+            echo "<option value=" . $key . ">" . $value . "</option>";
           }
         }
-       ?>
+      ?>
     </select>
-  </div>
-
-  <label>From:</label>
-  <select name="from-muscle">
-    <?php
-      $muscleGroup = [
-        "arms" => "Arms",
-        "chest" => "Chest",
-        "waist" => "Waist",
-        "thighs" => "Legs",
-        "calves" => "Calves",
-      ];
-
-      foreach ($muscleGroup as $key => $value) {
-        if ($key == $bodybuilder['fromMuscle']) {
-          echo "<option value=" . $key . " selected>" . $value . "</option>";
-        } else {
-          echo "<option value=" . $key . ">" . $value . "</option>";
+    <div>
+    <input class="muscle-input" name="measurement-size" step="0.01" type="number" value="<?php echo $measurementSize ?>">
+    <?php if (isset($validationError)) {  echo "<span class='validation-error'>" . $validationError . "</span>"; } ?>
+    </div>
+    <label>To:</label>
+    <select name="result-muscle">
+      <?php
+        foreach ($muscleGroup as $key => $value) {
+          if ($key == $bodybuilder['resultMuscle']) {
+            echo "<option value=" . $key . " selected>" . $value . "</option>";
+          } else {
+            echo "<option value=" . $key . ">" . $value . "</option>";
+          }
         }
-      }
-     ?>
-  </select>
-  <div>
-  <input class="muscle-input" name="measurement-size" step="0.01" type="number" value="<?php echo $measurementSize ?>">
-  <?php if (isset($validationError)) {  echo "<span class='validation-error'>" . $validationError . "</span>"; } ?>
-  </div>
-  <label>To:</label>
-  <select name="result-muscle">
+      ?>
+    </select>
+
     <?php
-      foreach ($muscleGroup as $key => $value) {
-        if ($key == $bodybuilder['resultMuscle']) {
-          echo "<option value=" . $key . " selected>" . $value . "</option>";
-        } else {
-          echo "<option value=" . $key . ">" . $value . "</option>";
-        }
+      if ($resultMeasurement) {
+        echo "<p>Size: " . round($resultMeasurement, 3) . "</p>";
       }
     ?>
-  </select>
 
-  <?php
-    if ($resultMeasurement) {
-      echo "<p>Size: " . round($resultMeasurement, 3) . "</p>";
-    }
-   ?>
+    <input class="login-button" type="submit" name="convert" value="Convert"/>
+  </form>
 
-  <input class="login-button" type="submit" name="convert" value="Convert"/>
-</form>
-
+</div>
 
 <?php require("includes/footer.php") ?>
