@@ -16,21 +16,22 @@
 
 }
 ?>
+<div class="page-background">
+  <div class="content-wrapper">
+    <div class="feature-info">
+      <h2>Pin by Height</h2>
+      <p>Selecting a bodybuilder will give you the proportional measurements based on your individual heights.
+      If desired, new measurements can be set as your current goal.
+      </p>
+    </div>
 
-<div class="content-wrapper">
-  <div class="feature-info">
-    <h2>Pin by Height</h2>
-    <p>Selecting a bodybuilder will give you the proportional measurements based on your individual heights.
-    If desired, new measurements can be set as your current goal.
-    </p>
+    <form id='pinBodyPart' action='<?php echo($_SERVER['PHP_SELF']) ?>' method='post'>
+    <?php
+      createBodybuilderForm($connection);
+      $_SESSION['form-page'] = "height";
+    ?>
+    </form>
+
   </div>
-
-  <form id='pinBodyPart' action='<?php echo($_SERVER['PHP_SELF']) ?>' method='post'>
-  <?php
-    createBodybuilderForm($connection);
-    $_SESSION['form-page'] = "height";
-  ?>
-  </form>
-
 </div>
 <?php require("includes/footer.php");?>
