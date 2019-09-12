@@ -355,7 +355,26 @@ a {
   font-size: 0.8rem;
 }
 
+/* CUSTOM.PHP */
 
+.user-stats {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  text-align: center;
+  border-radius: 3px;
+  color: rgb(225, 225, 225);
+  margin-bottom: 2rem;
+}
+
+.stats-group {
+  font-size: 1.2rem;
+  display: inline-block;
+  width: 48%;
+}
+
+.custom-stat-group.custom-btn {
+  margin-top: 1rem;
+}
 
 /* PROFILEHISTORY.PHP */
 .progress-pic {
