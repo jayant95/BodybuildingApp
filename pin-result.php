@@ -4,8 +4,9 @@
 	require_once("includes/db_connection.php");
 	require("includes/helper_functions.php");
 
+	echo "<div class='page-background short-page'>";
 	echo "<div class='content-wrapper'>";
-	
+	echo "<div class='user-stats'>";
 	// if (isset($_POST['submit'])) {
 		if (!isset($_SESSION['username'])) {
 			header("Location: login.php");
@@ -33,7 +34,7 @@
 		$thighRatio = $bodybuilderStats['thighs'] / $bodybuilderStats[$pinnedAttribute];
 		$calfRatio = $bodybuilderStats['calves'] / $bodybuilderStats[$pinnedAttribute];
 
-		echo "<p>Results for pinning " . $pinnedAttribute . " using " . $bodybuilderName . "</p>";
+		echo "<h2>Results: Pin by " . $pinnedAttribute . " using " . $bodybuilderName . "</h2>";
 
 		if ($pinnedAttribute == "calves") {
 			$pinnedAttribute = "leftCalf";
@@ -76,7 +77,7 @@
 		header("Location: profile.php");
 	}
 ?>
-	<table>
+	<table class="ratio-table">
 		<tr>
 			<th>Name</th>
 			<th>Chest</th>
@@ -108,18 +109,31 @@
 		<tr>
 			<?php
 				echo "<th>Result</th>";
-				echo "<td>" . round($resultChest, 2) . "</td>";
-				echo "<td>" . round($resultArms, 2) . "</td>";
-				echo "<td>" . round($resultWaist, 2) . "</td>";
-				echo "<td>" . round($resultThighs, 2) . "</td>";
-				echo "<td>" . round($resultCalves, 2) . "</td>";
+				echo "<td>" . round($bodybuilderStats['chest'] - $userStats['chest'], 2) . "</td>";
+				echo "<td>" . round($bodybuilderStats['arms'] - $userStats['leftArm'], 2) . "</td>";
+				echo "<td>" . round($bodybuilderStats['waist'] - $userStats['waist'], 2) . "</td>";
+				echo "<td>" . round($bodybuilderStats['thighs'] - $userStats['leftThigh'], 2) . "</td>";
+				echo "<td>" . round($bodybuilderStats['calves'] - $userStats['leftCalf'], 2) . "</td>";
 			?>
 		</tr>
 	</table>
 	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-		<input class='profile-input' type='submit' name='update' value='Update Goal'>
+		<input class='login-button' type='submit' name='update' value='Update Goal'>
 	</form>
-
+	</div>
+	<div class="feature-info details">
+		<h3>Walkthrough Example</h3>
+		<p>Pinned attribute: Calves | Bodybuilder: Arnold Schwarzenegger: 20in | User: 15in</p>
+		<p>Arnold's Ratios:</p>
+		<p>Arms: 22 / 20 = 1.1 | Chest: 57 / 20 = 2.85 | Waist: 34 / 20 = 1.7 | Thighs: 28.5 / 20 = 1.425</p>
+		<p>Users ideal size:</p>
+		<p>Arms: 15 * 1.1 = 16.5in | Chest: 15 * 2.85 = 42.75in | Waist: 15 * 1.7 = 25.5in | Thighs: 15 * 1.425 = 21.38in</p>
+		<p>-------------------------------------------------------------------------------------------------------------------</p>
+		<p>Results show which areas need improvement in order to hold the same proportions as chosen bodybuilder</p>
+		<p>Click 'Update Goal' in order to set these current proportions and measurements as your current goal<p>
+	</div>
+</div>
+<?php require("includes/navigation_bottom.php"); ?>
 </div>
 
 <?php require("includes/footer.php"); ?>

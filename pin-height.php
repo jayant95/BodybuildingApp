@@ -33,5 +33,6 @@
     </form>
 
   </div>
+  <?php require("includes/navigation_bottom.php"); ?>
 </div>
 <?php require("includes/footer.php");?>

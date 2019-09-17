@@ -110,6 +110,7 @@
         <p>Using Arnold Schwarzenegger's muscle ratio the ideal calf size for the user is 16.14in with 23in thighs</p>
     </div>
   </div>
+  <?php require("includes/navigation_bottom.php"); ?>
 </div>
 
 <?php require("includes/footer.php") ?>

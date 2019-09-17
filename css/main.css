@@ -228,6 +228,10 @@ a {
   max-height: 100%;
 }
 
+.page-background.short-page {
+  min-height: 750px;
+}
+
 /* SELECTORS */
 .active {
   background-color:rgba(0, 0, 0, 0.5);
@@ -491,12 +495,13 @@ td {
 .bodybuilder-list {
   flex-grow: 1;
   color: white;
+  min-width: 350px;
 }
 
 .bodybuilder-name-list {
   padding-top: 0.5rem;
   text-align: center;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid rgb(100, 100, 100);
   width: 100%;
   transition: 0.5s;
   cursor: pointer;
@@ -508,6 +513,7 @@ td {
 }
 
 .form-submit {
+  margin-top: 1rem;
   padding: 0;
 }
 
@@ -534,3 +540,36 @@ td {
   background-color: #333333;
   transition-duration: 1s;
 }
+
+/* NAVIGATION_BOTTOM.PHP */
+
+.nav-bottom {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+  padding-top: 3rem;
+}
+
+.nav-bottom.short-page {
+  margin-top: 5rem;
+}
+
+.nav-feature {
+  border: 1px solid white;
+  border-radius: 2px;
+  margin: 0.5rem;
+  min-width: 150px;
+  padding: 2rem 1rem;
+  flex: 1;
+}
+
+.nav-feature:hover {
+  background-color: rgb(255, 0, 0);
+  transition: 1s;
+}
+

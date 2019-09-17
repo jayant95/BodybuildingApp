@@ -64,10 +64,9 @@
       <p>- Chest circumference = 550% bigger than non-dominant wrist (6.5x)<p> 
       <p>- Upper thigh circumference = 75% bigger than circumference of knee (1.75x)<p> 
       <p>**Golden ratio requires minimal body fat for correct proportions. Less than 10% body fat is ideal.<p> 
-
-
     </div>
   </div>
+  <?php require("includes/navigation_bottom.php"); ?>
 </div>
 
 

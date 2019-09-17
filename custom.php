@@ -129,6 +129,7 @@
 			</div>
 		</form>
 	</div>
+	<?php require("includes/navigation_bottom.php"); ?>
 </div>
 
 
