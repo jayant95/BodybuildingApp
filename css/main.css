@@ -376,6 +376,27 @@ a {
   margin-top: 1rem;
 }
 
+
+/* GOLDENRATIO.PHP */
+
+.ratio-form {
+  color: rgb(225, 225, 225);
+  text-align: center;
+}
+
+.ratio-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.ratio-table tr {
+  border-bottom: 1px solid rgb(100, 100, 100);
+  font-size: 1.1rem;
+  height: 40px;
+}
+
 /* PROFILEHISTORY.PHP */
 .progress-pic {
   width: 100%;
