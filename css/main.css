@@ -1,3 +1,5 @@
+
+
 .active-body {
   fill: red;
 }
@@ -10,7 +12,7 @@ input {
 body {
   margin: 0;
   padding: 0;
-  font-family: helvetica;
+  font-family: Bahnschrift, Helvetica;
 }
 
 h1 {
@@ -39,10 +41,46 @@ a {
   color: red;
 }
 
+.validation-msg {
+  color: red;
+  display: block;
+  width: 100%;
+  list-style-type: none;
+}
+
 /* HEADER.PHP */
 .top-banner {
-  background-color: rgb(240, 240, 240);
-  padding-bottom: 0.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: white;
+  background-color: black;
+  padding: 2rem;
+  padding-bottom: 1rem;
+}
+
+.site-title, .profile-links {
+  flex: 1;
+}
+
+.profile-links {
+  text-align: end;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.nav-links {
+  padding: 0;
+}
+
+.profile-links li {
+  display: inline-block;
+}
+
+.profile-links li:nth-child(2) {
+  margin-left: 1rem;
 }
 
 /* FOOTER.PHP */
@@ -220,7 +258,7 @@ a {
 /* HOME.PHP */
 
 .page-background {
-  background-image: url("../img/black-background.jpg");
+  background-image: url("../img/chalk_background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -344,6 +382,10 @@ a {
   font-size: 0.8rem;
 }
 
+.user-stats.table {
+  overflow-x: auto;
+}
+
 
 /* MUSCLETOMUSCLE.PHP */
 .muscle-input {
@@ -410,9 +452,65 @@ a {
 }
 
 /* PROFILEHISTORY.PHP */
+.content-wrapper.progress-pics {
+  padding-top: 0rem;
+}
+
+.upload-form {
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.upload-history {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.picture-month {
+  display: block;
+  width: 100%;
+  color: white;
+}
+
+.progress-header {
+  margin: 0;
+  padding: 2rem 0rem;
+  color: white;
+  /* text-align: center; */
+}
+
+.image-holder {
+  min-width: 200px;
+  flex: 1;
+  margin: 2px;
+  /* overflow: hidden; */
+}
+
+.login-button.upload {
+  margin-top: 0.5rem;
+  display: inline-block;
+  width: 70%;
+}
+
+.upload-status {
+  margin: 0;
+  color: white;
+  padding: 1rem;
+}
+
 .progress-pic {
   width: 100%;
-  max-width: 300px;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 2px;
 }
 
 .enlarged-pic {

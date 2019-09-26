@@ -21,16 +21,6 @@
     if (empty($errors)) {
       $errors[] = loginByUsername($user, $connection);
     }
-
-    // Show validation errors
-    if (!empty($errors)) {
-      foreach ($errors as $opt) {
-        if ($opt) {
-          echo "<li>$opt</li>";
-        }
-
-      }
-    }
   }
 ?>
 
@@ -40,6 +30,7 @@
         <img src="img/login-background.jpg" class="login-image">
     </div> -->
     <div class="container-login background-image overlay">
+
 			<div class="wrap-login">
 				<form class="login-form" action="", method="POST">
           <h3 class="login-header">Login</h3>
@@ -59,7 +50,20 @@
 
 					<div class="login-form-link">
             <p>Not a member? <a class="register-link" href="register.php">Sign up here</a></p>
-					</div>
+          </div>
+          <?php
+
+          // Show validation errors
+          if (!empty($errors)) {
+            echo "<div class='validation-msg'>";
+            foreach ($errors as $opt) {
+              if ($opt) {
+                echo "<li>$opt</li>";
+              }
+            }
+            echo "</div>";
+          }
+      ?>
 				</form>
 			</div>
 		</div>

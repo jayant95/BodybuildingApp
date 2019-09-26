@@ -43,13 +43,6 @@
     }
 
     $connection->close();
-
-    if (!empty($errors)) {
-      // List out form errors
-      foreach ($errors as $opt) {
-        echo "<li>$opt</li>";
-      }
-    }
   }
 
 ?>
@@ -97,7 +90,20 @@
 
 					<div class="login-form-link">
             <p>Have an account? <a class="register-link" href="login.php">Sign in here</a></p>
-					</div>
+          </div>
+          
+          <?php
+            // Show validation errors
+            if (!empty($errors)) {
+              echo "<div class='validation-msg'>";
+              foreach ($errors as $opt) {
+                if ($opt) {
+                  echo "<li>$opt</li>";
+                }
+              }
+              echo "</div>";
+            }
+            ?>
 				</form>
 			</div>
   </div>

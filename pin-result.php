@@ -6,7 +6,7 @@
 
 	echo "<div class='page-background short-page'>";
 	echo "<div class='content-wrapper'>";
-	echo "<div class='user-stats'>";
+	echo "<div class='user-stats table'>";
 	// if (isset($_POST['submit'])) {
 		if (!isset($_SESSION['username'])) {
 			header("Location: login.php");

@@ -211,7 +211,7 @@
           </div>
       </div>
 
-    <div class="user-stats">
+    <div class="user-stats table">
       <h3>Measurement History</h3>
       <table class="ratio-table profile">
         <tr>
@@ -252,10 +252,11 @@
         ?>
       </table>
     </div>
-    <div class="upload-history">
+    <div class="progress-button">
       <a class="login-button" href="profile-history.php">View Progress Pictures >></a>
     </div>
   </div>
+  <?php require("includes/navigation_bottom.php"); ?>
 </div>
 
 <?php require("includes/footer.php"); ?>

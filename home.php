@@ -15,7 +15,7 @@
             </div>
             <div class="feature-info home">
               <h2>Height</h2>
-              <p>Choose a bodybuilder from the list and see your ideal measurements by height</p>
+              <p>Choose a bodybuilder and see your ideal measurements by height</p>
             </div>
           </a>
         </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="feature-info home">
               <h2>Muscle to Muscle</h2>
-              <p>Compare two muscle groups using this conversion calculator with different bodybuilders</p>
+              <p>Conversion calculator to compare muscle groups</p>
             </div>
           </a>
         </div>
@@ -40,7 +40,7 @@
             </div>
             <div class="feature-info home">
               <h2>Pin Muscle Group</h2>
-              <p>Choose a bodybuilder from the list and see your ideal measurements by height</p>
+              <p>Choose a bodybuilder and see your ideal measurements by height</p>
             </div>
           </a>
         </div>
