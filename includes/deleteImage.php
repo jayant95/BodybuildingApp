@@ -9,7 +9,7 @@
         $path = "uploads/";
         $path .= $username;
 
-        $filename =  $path; // path to 
+        $filename =  $path;
         
         $dir = new RecursiveDirectoryIterator($filename);
 
@@ -20,13 +20,12 @@
             if ($fullName == $fullPath) {
                 echo "There is a match!";
                 unlink($filename);
+                $_SESSION['upload-message'] = "Your image was successfully deleted!";
                 echo "Deleting...";
                 echo "<br>";
                 header("Location: ../profile-history.php");
             }
             echo $fullName . '  </br>';
         }
-
     }
-
 ?>

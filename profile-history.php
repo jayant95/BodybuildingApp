@@ -38,13 +38,15 @@
   }
 ?>
 <div class="page-background short-page">
-  <div class="content-wrapper progress-pics">
-    <?php
+    <?php 
       if (isset($_SESSION['upload-message'])) {
-        echo "<p class='upload-status'>" . $_SESSION['upload-message'] . "</p>";
+        echo "<div class='site-message'>";
+        echo "<p>" . $_SESSION['upload-message'] . "</p>";
+        echo "</div>";
         unset($_SESSION['upload-message']);
       }
     ?>
+  <div class="content-wrapper progress-pics">
     <div class="progress-header">
       <h2>Progress Pictures</h2>
       <p>You can view and upload your progress photos here! (JPG, JPEG and PNG under 500kb)</p>
