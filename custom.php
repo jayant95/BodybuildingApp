@@ -2,12 +2,13 @@
 	session_start();
 	require("includes/header.php");
 	require_once("includes/db_connection.php");
-  require_once("includes/helper_functions.php");
+  	require_once("includes/helper_functions.php");
 
 	$editActive = false;
 
 	if (!isset($_SESSION['username'])) {
 		header("Location: login.php");
+		$_SESSION['message'] = "Please sign in to set your custom goal!";
 		$_SESSION['redirect'] = "custom.php";
 	}
 

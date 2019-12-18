@@ -1,4 +1,7 @@
-
+@font-face {
+  font-family: chalkFont;
+  src: url(../fonts/SqueakyChalkSound.ttf);
+}
 
 .active-body {
   fill: red;
@@ -6,6 +9,10 @@
 
 input {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* ALL PAGES */
@@ -28,7 +35,7 @@ a {
   margin: 0 auto;
   max-width: 100%;
   padding-bottom: 2rem;
-  padding-top: 4rem;
+  padding-top: 3rem;
 }
 
 @media screen and (min-width: 600px) {
@@ -48,6 +55,17 @@ a {
   list-style-type: none;
 }
 
+.site-message {
+  text-align: center;
+  padding: 0.5rem;
+  color: rgb(255, 0, 0);
+  background-color: black;
+}
+
+.site-message p {
+  margin: 0;
+}
+
 /* HEADER.PHP */
 .top-banner {
   display: flex;
@@ -57,10 +75,22 @@ a {
   background-color: black;
   padding: 2rem;
   padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(100, 100, 100);
 }
 
 .site-title, .profile-links {
   flex: 1;
+}
+
+.site-logo {
+  width: 60px;
+}
+
+.site-title h1 {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 .profile-links {
@@ -163,7 +193,7 @@ ul {
   height: 100%;
   display: block;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.075);
 }
 
 .wrap-login {
@@ -173,6 +203,7 @@ ul {
   overflow: hidden;
   padding: 1rem;
   z-index: 2;
+  /* border: 1px solid rgb(50, 50, 50); */
 }
 
 .login-form {
@@ -270,6 +301,73 @@ ul {
   min-height: 750px;
 }
 
+.welcome-header {
+  color: white;
+  text-align: center;
+}
+
+.welcome-header h1 {
+  font-size: 3rem;
+  font-family: chalkFont;
+  margin-bottom: 2rem;
+}
+
+.welcome-header h2 {
+  font-size: 2rem;
+}
+
+.welcome-header h3{
+  font-size: 1.5rem;
+}
+
+.welcome-header p {
+  font-size: 1.5rem;
+}
+
+.wrap-login.homepage {
+  display: block;
+  width: 70%;
+  border-radius: 5px;
+}
+
+.logo-header {
+  margin-bottom: 1rem;
+}
+
+.site-logo.main {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+}
+
+.welcome-link-section {
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin-top: -150px;
+  z-index: 1;
+}
+
+.welcome-link-section img {
+  width: 4%;
+}
+
+.welcome-link-section img:hover {
+  width: 5%;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.features-header {
+  text-align: center;
+  color: white;
+}
+
+.features-header h2 {
+  font-family: chalkFont;
+}
+
 /* SELECTORS */
 .active {
   background-color:rgba(0, 0, 0, 0.5);
@@ -306,34 +404,41 @@ ul {
 }
 
 .site-feature img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 50%;
 }
 
 .muscle-to-muscle img {
-  padding-bottom: 4.6rem;
-}
+  width: 30%;
+} 
+
 
 .pin-muscle img {
-  width: 45%;
-  padding-bottom: 1.5rem;
+  width: 20%;
 }
+
 
 .custom-feature img {
-  width: 60%;
-  padding-bottom: 3.5rem;
+  width: 40%;
 }
 
+/*
 .golden-ratio img {
   padding-bottom: 2.5rem;
-}
+} */
 
 .site-feature:hover {
   background-color: rgba(0, 0, 0, 0.7);
   transition-duration: 1s;
 }
 
+
+
 .site-feature:hover .feature-info-img {
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(200, 200, 200);
   transition-duration: 1s;
 }
 
@@ -347,9 +452,17 @@ ul {
   color: white;
 }
 
+.feature-info h2 {
+  font-family: chalkFont;
+}
+
+
 .feature-info-img {
+  position: relative;
+  height: 200px;
   padding-top: 1rem;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
 }
 
 .feature-info.home {

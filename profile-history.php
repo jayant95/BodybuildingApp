@@ -61,6 +61,8 @@
         ksort($pic_arr);
 
         $fileDate = "";
+        $pictureID = 1;
+        $picID = "galleryPic";
         foreach ($pic_arr as $dateKey => $name) {
           $temp = date("F Y", $dateKey);
           if ($temp !== $fileDate) {
@@ -69,9 +71,13 @@
           }
 
           $image_info = getImageSize($name);
-          echo "<div class='image-holder'>";
-          echo "<img src=" . $name . " class='progress-pic' alt='progress-pic' width=" . $image_info[0] . " height=" . $image_info[1] . ">";
-          echo "</div>";
+          $fullName = $picID . $pictureID;
+          echo "<form action='includes/deleteImage.php' method='post' class='image-holder'>";
+          echo "<img src=" . $name . " value=" . $name . " name='delete-file' class='progress-pic' alt='progress-pic' width=" . $image_info[0] . " height=" . $image_info[1] . ">";
+          echo "<input type='hidden' name='image-path' value=" . $name . "  value='Delete'/>";
+          echo "<input type='submit' name='submit-delete' class='pic-delete' value='X'/>";
+          echo "</form>";
+          $pictureID++;
         }
       ?>
     </div>
@@ -85,5 +91,11 @@
   <?php require("includes/navigation_bottom.php") ?>
 </div>
 
+<script>
+  function deleteCheck(pictureID){
+    let image_x = document.getElementById(pictureID);
+    image_x.parentNode.removeChild(image_x);
+  }
+</script>
 
 <?php require("includes/footer.php") ?>

@@ -27,7 +27,12 @@
             }
             echo "</tr>";
           }
-        echo "</table>";
+          echo "</table>";
+          ?>
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+            <input class='login-button' type='submit' name='update' value='Update Goal'>
+          </form>
+          <?php
       } else {
         echo "<p>Please create an account and fill in the measurements in order to view your golden ratio</p>";
       }
@@ -49,10 +54,6 @@
         header("Location: profile.php");
       }
     ?>        
-
-      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        <input class='login-button' type='submit' name='update' value='Update Goal'>
-      </form>
     </div>
     <div class="feature-info">
       <p>In bodybuilding, the golden ratio is the epitome of a timeless physique by combining perfect proportions,

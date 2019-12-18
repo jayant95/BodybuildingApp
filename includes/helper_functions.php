@@ -55,6 +55,7 @@
     mkdir($path, 0777, true);
 
     setUserSettings($user, $connection);
+    createMemberDetailEntry($user, $connection);
   }
 
   function setUserSettings($user, $connection) {
@@ -212,6 +213,20 @@
       $user_profile['last-name'] = $row['lastName'];
       $user_profile['email'] = $row['email'];
       $user_profile['username'] = $row['username'];
+    }
+    
+    // $stmt->close();
+
+    if ($stmt = $connection->prepare('SELECT * FROM memberdetails WHERE username = ?')) {
+      $stmt->bind_param('s', $username);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $result = $stmt->get_result();
+    while($row = $result->fetch_assoc()) {
       $user_profile['leftArm'] = $row['leftArm'];
       $user_profile['rightArm'] = $row['rightArm'];
       $user_profile['chest'] = $row['chest'];
@@ -223,15 +238,13 @@
       $user_profile['shoulders'] = $row['shoulders'];
       $user_profile['neck'] = $row['neck'];
       $user_profile['knee'] = $row['knee'];
-      $user_profile['wrists'] = $row['wrists'];
+      $user_profile['wrists'] = $row['wrist'];
       $user_profile['ankles'] = $row['ankles'];
       $user_profile['bodyFat'] = $row['bodyFat'];
       $user_profile['weight'] = $row['weight'];
       $user_profile['height'] = $row['height'];
     }
-
-    $stmt->close();
-
+    
     return $user_profile;
   }
 
@@ -254,8 +267,8 @@
   }
 
   function updateUserProfile($user, $connection) {
-    $sql = "UPDATE members SET leftArm = ?, rightArm = ?, chest = ?, waist = ?, leftThigh = ?, rightThigh = ?,
-      leftCalf = ?, rightCalf = ?, shoulders = ?, neck = ?, weight = ?, height = ?, bodyFat = ?, wrists = ?, ankles = ?, knee = ?
+    $sql = "UPDATE memberdetails SET leftArm = ?, rightArm = ?, chest = ?, waist = ?, leftThigh = ?, rightThigh = ?,
+      leftCalf = ?, rightCalf = ?, shoulders = ?, neck = ?, weight = ?, height = ?, bodyFat = ?, wrist = ?, ankles = ?, knee = ?
       WHERE username = ?";
 
     $stmt = $connection->prepare($sql);
@@ -271,6 +284,24 @@
     }
 
     $stmt->close();
+  }
+
+  function createMemberDetailEntry($user, $connection) {
+    $sql = "INSERT INTO memberdetails (leftArm, rightArm, chest, waist, leftThigh, rightThigh, leftCalf, rightCalf, shoulders, neck, weight, height, bodyFat, wrist, ankles, knee, username)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    
+    $stmt = $connection->prepare($sql);
+    if ($stmt) {
+      $stmt->bind_param('dddddddddddddddds', $user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
+                        $user['rightCalf'], $user['shoulders'], $user['neck'], $user['weight'], $user['height'], $user['bodyFat'], $user['wrists'], $user['ankles'], $user['knee'], $_SESSION['username']);
+      $stmt->execute();
+    } else {
+      $error = $connection->errno . ' ' . $connection->error;
+      echo $error;
+    }
+
+    $stmt->close();
+
   }
 
   function getUserMeasurementLog($userID, $connection) {
@@ -375,7 +406,7 @@
     $bodyParts = [];
     $goldenRatio = 1.618;
 
-    $sql = "SELECT waist, shoulders, chest, wrists, leftArm, leftCalf, neck, knee, leftThigh FROM members WHERE username = ?";
+    $sql = "SELECT waist, shoulders, chest, wrists, leftArm, leftCalf, neck, knee, leftThigh FROM membersdetails WHERE username = ?";
 
     if ($stmt = $connection->prepare($sql)) {
       $stmt->bind_param('s', $username);

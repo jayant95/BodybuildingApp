@@ -4,12 +4,6 @@
   require_once("includes/db_connection.php");
   require_once("includes/helper_functions.php");
 
-  if (isset($_SESSION['message'])) {
-    echo "<p>" . $_SESSION['message'] . "<p>";
-    unset($_SESSION['message']);
-  }
-
-
   if (isset($_POST['submit'])) {
     $user['username'] = !empty($_POST['username']) ? $_POST['username'] : "";
     $user['password'] = !empty($_POST['password']) ? $_POST['password'] : "";
@@ -22,19 +16,23 @@
       $errors[] = loginByUsername($user, $connection);
     }
   }
+
+
+  if (isset($_SESSION['message'])) {
+    echo "<div class='site-message'>";
+    echo "<p>" . $_SESSION['message'] . "</p>";
+    echo "</div>";
+    unset($_SESSION['message']);
+  }
+
 ?>
 
 
   <div class="login-wrapper">
-    <!-- <div class="login-panel image">
-        <img src="img/login-background.jpg" class="login-image">
-    </div> -->
     <div class="container-login background-image overlay">
-
 			<div class="wrap-login">
 				<form class="login-form" action="", method="POST">
           <h3 class="login-header">Login</h3>
-
 
 					<div class="wrap-input">
 						<input class="form-input" type="text" name="username" placeholder="Username">
@@ -49,6 +47,7 @@
 					</div>
 
 					<div class="login-form-link">
+            <a class="register-link" href="reset-password.php">Forgot your password?</a>
             <p>Not a member? <a class="register-link" href="register.php">Sign up here</a></p>
           </div>
           <?php
@@ -64,7 +63,7 @@
             echo "</div>";
           }
       ?>
-				</form>
+        </form>
 			</div>
 		</div>
     <!-- <div class="login-panel login-box">

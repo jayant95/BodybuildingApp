@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Phyziq</title>
+    <title>Deltoyd</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel='icon' href="img/favicon.ico" type="image/x-icon"/>
   </head>
 
 
@@ -12,8 +13,9 @@
 
   <div class="top-banner">
     <div class="site-title">
+      <img class="site-logo" src="img/site-logo.png">
       <!-- Add the site logo here  -->
-      <h1><a href="home.php">Fiziq</a></h1>
+      <h1><a href="home.php">Deltoyd</a></h1>
     </div>
 
     <nav class="profile-links">

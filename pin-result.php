@@ -109,11 +109,21 @@
 		<tr>
 			<?php
 				echo "<th>Result</th>";
-				echo "<td>" . round($bodybuilderStats['chest'] - $userStats['chest'], 2) . "</td>";
-				echo "<td>" . round($bodybuilderStats['arms'] - $userStats['leftArm'], 2) . "</td>";
-				echo "<td>" . round($bodybuilderStats['waist'] - $userStats['waist'], 2) . "</td>";
-				echo "<td>" . round($bodybuilderStats['thighs'] - $userStats['leftThigh'], 2) . "</td>";
-				echo "<td>" . round($bodybuilderStats['calves'] - $userStats['leftCalf'], 2) . "</td>";
+				echo "<td>" . round($resultChest, 2) . "</td>";
+				echo "<td>" . round($resultArms, 2) . "</td>";
+				echo "<td>" . round($resultWaist, 2) . "</td>";
+				echo "<td>" . round($resultThighs, 2) . "</td>";
+				echo "<td>" . round($resultCalves, 2) . "</td>";
+			?>
+		</tr>
+		<tr>
+		<?php
+				echo "<th>+/-</th>";
+				echo "<td>" . round($resultChest - $userStats['chest'], 2) . "</td>";
+				echo "<td>" . round($resultArms - $userStats['leftArm'], 2) . "</td>";
+				echo "<td>" . round($resultWaist - $userStats['waist'], 2) . "</td>";
+				echo "<td>" . round($resultThighs - $userStats['leftThigh'], 2) . "</td>";
+				echo "<td>" . round($resultCalves - $userStats['leftCalf'], 2) . "</td>";
 			?>
 		</tr>
 	</table>

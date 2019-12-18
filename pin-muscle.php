@@ -7,7 +7,9 @@
 
 <?php
   if (isset($_SESSION['message'])) {
-    echo "<p>" . $_SESSION['message'] . "<p>";
+    echo "<div class='site-message'>";
+    echo "<p>" . $_SESSION['message'] . "</p>";
+    echo "</div>";
     unset($_SESSION['message']);
   }
 
