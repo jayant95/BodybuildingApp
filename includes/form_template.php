@@ -38,7 +38,7 @@
         echo    "<div class='bodybuilder-name-list'>";
         echo      "<div class='bodybuilder' id='". $row["name"] . "'>";
         echo        "<p>" . $row["name"] . "</p>";
-        echo        "<p>height: " . $row["height"] . " inch</p>";
+        echo        "<p>Height: " . $row["height"] . " inches</p>";
         echo      "</div>";
         echo    "</div>";
         echo "</a>";

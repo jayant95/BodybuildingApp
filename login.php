@@ -33,7 +33,18 @@
 			<div class="wrap-login">
 				<form class="login-form" action="", method="POST">
           <h3 class="login-header">Login</h3>
-
+          <?php
+            // Show validation errors
+            if (!empty($errors)) {
+              echo "<div class='validation-msg'>";
+              foreach ($errors as $opt) {
+                if ($opt) {
+                  echo "<li>$opt</li>";
+                }
+              }
+              echo "</div>";
+            }
+          ?>
 					<div class="wrap-input">
 						<input class="form-input" type="text" name="username" placeholder="Username">
 					</div>
@@ -50,19 +61,6 @@
             <a class="register-link" href="reset-password.php">Forgot your password?</a>
             <p>Not a member? <a class="register-link" href="register.php">Sign up here</a></p>
           </div>
-          <?php
-
-          // Show validation errors
-          if (!empty($errors)) {
-            echo "<div class='validation-msg'>";
-            foreach ($errors as $opt) {
-              if ($opt) {
-                echo "<li>$opt</li>";
-              }
-            }
-            echo "</div>";
-          }
-      ?>
         </form>
 			</div>
 		</div>

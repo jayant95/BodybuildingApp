@@ -51,7 +51,19 @@
 			<div class="wrap-login">
 				<form class="login-form" action<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?> method="post">
           <h3 class="login-header">Register</h3>
-
+                    
+          <?php
+            // Show validation errors
+            if (!empty($errors)) {
+              echo "<div class='validation-msg'>";
+              foreach ($errors as $opt) {
+                if ($opt) {
+                  echo "<li>$opt</li>";
+                }
+              }
+              echo "</div>";
+            }
+          ?>
 
 					<div class="wrap-input">
           <label class="input-label">First Name</label>
@@ -91,19 +103,6 @@
 					<div class="login-form-link">
             <p>Have an account? <a class="register-link" href="login.php">Sign in here</a></p>
           </div>
-          
-          <?php
-            // Show validation errors
-            if (!empty($errors)) {
-              echo "<div class='validation-msg'>";
-              foreach ($errors as $opt) {
-                if ($opt) {
-                  echo "<li>$opt</li>";
-                }
-              }
-              echo "</div>";
-            }
-            ?>
 				</form>
 			</div>
   </div>

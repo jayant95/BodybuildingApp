@@ -406,7 +406,7 @@
     $bodyParts = [];
     $goldenRatio = 1.618;
 
-    $sql = "SELECT waist, shoulders, chest, wrists, leftArm, leftCalf, neck, knee, leftThigh FROM membersdetails WHERE username = ?";
+    $sql = "SELECT waist, shoulders, chest, wrist, leftArm, leftCalf, neck, knee, leftThigh FROM memberdetails WHERE username = ?";
 
     if ($stmt = $connection->prepare($sql)) {
       $stmt->bind_param('s', $username);
@@ -435,36 +435,36 @@
       $bodyParts['Chest'] = array(
         "Part" => "Chest",
         "Current" => $row['chest'],
-        "Goal" => round($row['wrists'] * 6.5, 2),
-        "Difference" => round(($row['wrists'] * 6.5) - $row['chest'], 2)
+        "Goal" => round($row['wrist'] * 6.5, 2),
+        "Difference" => round(($row['wrist'] * 6.5) - $row['chest'], 2)
       );
 
       $bodyParts['Wrists'] = array(
         "Part" => "Wrists",
-        "Current" => $row['wrists'] . " (constant)",
-        "Goal" => $row['wrists'],
+        "Current" => $row['wrist'] . " (constant)",
+        "Goal" => $row['wrist'],
         "Difference" => 0
       );
 
       $bodyParts['Arm'] = array(
         "Part" => "Arm",
         "Current" => $row['leftArm'],
-        "Goal" => round($row['wrists'] * 2.5, 2),
-        "Difference" => round(($row['wrists'] * 2.5) - $row['leftArm'], 2)
+        "Goal" => round($row['wrist'] * 2.5, 2),
+        "Difference" => round(($row['wrist'] * 2.5) - $row['leftArm'], 2)
       );
 
       $bodyParts['Calf'] = array(
         "Part" => "Calf",
         "Current" => $row['leftCalf'],
-        "Goal" => round($row['wrists'] * 2.5, 2),
-        "Difference" => round(($row['wrists'] * 2.5) - $row['leftCalf'], 2)
+        "Goal" => round($row['wrist'] * 2.5, 2),
+        "Difference" => round(($row['wrist'] * 2.5) - $row['leftCalf'], 2)
       );
 
       $bodyParts['Neck'] = array(
         "Part" => "Neck",
         "Current" => $row['neck'],
-        "Goal" => round($row['wrists'] * 2.5, 2),
-        "Difference" => round(($row['wrists'] * 2.5) - $row['neck'], 2)
+        "Goal" => round($row['wrist'] * 2.5, 2),
+        "Difference" => round(($row['wrist'] * 2.5) - $row['neck'], 2)
       );
 
       $bodyParts['Knee'] = array(

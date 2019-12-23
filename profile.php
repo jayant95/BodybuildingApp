@@ -81,39 +81,39 @@
       </div>
     </div>
     <form class="user-stats" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        <h3>Measurements</h3>
+        <h3>Current Measurements (inches)</h3>
           <div class="stats-group left">
             <div class="custom-stat-group wrap-input">
               <label>Left Arm:</label>
-              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='leftArm' value=".$user_profile['leftArm'].">" : "<p>".$user_profile['leftArm']."</p>"; ?>
+              <?php echo $editActive ? "<input class='form-input' type='number' step='0.1' name='leftArm' value=".$user_profile['leftArm'].">" : "<p>".$user_profile['leftArm']."</p>"; ?>
             </div>
             <div class="custom-stat-group wrap-input">
               <label>Right Arm:</label>
-              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='rightArm' value=".$user_profile['rightArm'].">" : "<p>".$user_profile['rightArm']."</p>"; ?>
+              <?php echo $editActive ? "<input class='form-input' type='number' step='0.1' name='rightArm' value=".$user_profile['rightArm'].">" : "<p>".$user_profile['rightArm']."</p>"; ?>
             </div>
             <div class="custom-stat-group wrap-input">
               <label>Chest:</label>
-              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='chest' value=".$user_profile['chest'].">" : "<p>".$user_profile['chest']."</p>"; ?>
+              <?php echo $editActive ? "<input class='form-input' type='number' step='0.1' name='chest' value=".$user_profile['chest'].">" : "<p>".$user_profile['chest']."</p>"; ?>
             </div>
             <div class="custom-stat-group wrap-input">
               <label>Waist:</label>
-              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='waist' value=".$user_profile['waist'].">" : "<p>".$user_profile['waist']."</p>"; ?>
+              <?php echo $editActive ? "<input class='form-input' type='number' step='0.1' name='waist' value=".$user_profile['waist'].">" : "<p>".$user_profile['waist']."</p>"; ?>
             </div>
             <div class="custom-stat-group wrap-input">
               <label>Left Thigh:</label>
-              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='leftThigh' value=".$user_profile['leftThigh'].">" : "<p>".$user_profile['leftThigh']."</p>"; ?>
+              <?php echo $editActive ? "<input class='form-input' type='number' step='0.1' name='leftThigh' value=".$user_profile['leftThigh'].">" : "<p>".$user_profile['leftThigh']."</p>"; ?>
             </div>
             <div class="custom-stat-group wrap-input">
               <label>Right Thigh:</label>
-              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='rightThigh' value=".$user_profile['rightThigh'].">" : "<p>".$user_profile['rightThigh']."</p>"; ?>
+              <?php echo $editActive ? "<input class='form-input' type='number' step='0.1' name='rightThigh' value=".$user_profile['rightThigh'].">" : "<p>".$user_profile['rightThigh']."</p>"; ?>
             </div>
             <div class="custom-stat-group wrap-input">
               <label>Left Calf:</label>
-              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='leftCalf' value=".$user_profile['leftCalf'].">" : "<p>".$user_profile['leftCalf']."</p>"; ?>
+              <?php echo $editActive ? "<input class='form-input' type='number' step='0.1' name='leftCalf' value=".$user_profile['leftCalf'].">" : "<p>".$user_profile['leftCalf']."</p>"; ?>
             </div>
             <div class="custom-stat-group wrap-input">
               <label>Right Calf:</label>
-              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='rightCalf' value=".$user_profile['rightCalf'].">" : "<p>".$user_profile['rightCalf']."</p>"; ?>
+              <?php echo $editActive ? "<input class='form-input' type='number' step='0.1' name='rightCalf' value=".$user_profile['rightCalf'].">" : "<p>".$user_profile['rightCalf']."</p>"; ?>
             </div>
           </div>
           <div class="stats-group right">
@@ -139,11 +139,11 @@
             </div>
             <div class="custom-stat-group wrap-input">
               <label>Body Fat:</label>
-              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='bodyFat' value=".$user_profile['bodyFat'].">" : "<p>".$user_profile['bodyFat']."</p>"; ?>
+              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='bodyFat' value=".$user_profile['bodyFat'].">" : "<p>".$user_profile['bodyFat']."%</p>"; ?>
             </div>
             <div class="custom-stat-group wrap-input">
               <label>Weight:</label>
-              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='weight' value=".$user_profile['weight'].">" : "<p>".$user_profile['weight']."</p>"; ?>
+              <?php echo $editActive ? "<input class='form-input' type='number' step='0.01' name='weight' value=".$user_profile['weight'].">" : "<p>".$user_profile['weight']."lbs</p>"; ?>
             </div>
             <div class="custom-stat-group wrap-input">
               <label>Height:</label>

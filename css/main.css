@@ -53,6 +53,7 @@ a {
   display: block;
   width: 100%;
   list-style-type: none;
+  padding: 1rem 0.1rem;
 }
 
 .site-message {
@@ -146,7 +147,7 @@ ul {
   text-align: center;
   margin: 0 auto;
   color: white;
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
   font-size: 1.5rem;
 }
 
@@ -243,8 +244,8 @@ ul {
   text-transform: uppercase;
   border: 0;
   width: 100%;
-  height: 60px;
-  background:rgb(255, 0, 0);
+  height: 50px;
+  background:rgb(204, 0, 0);
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -392,7 +393,7 @@ ul {
 .site-feature {
   margin: 0.5rem;
   text-align: center;
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid rgb(100, 100, 100);
   width: 280px;
   flex-grow: 1;
   transition: 0.5s;
@@ -743,7 +744,7 @@ td {
 
 .form-submit input{
   font-size: 1.5rem;
-  background-color: rgb(255,0, 0);
+  background-color: rgb(204,0, 0);
   padding: 1rem;
   color: white;
   height: 100%;
@@ -788,7 +789,7 @@ td {
 }
 
 .nav-feature:hover {
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(204, 0, 0);
   transition: 1s;
 }
 

@@ -9,7 +9,19 @@
     <div class="container-login background-image overlay">
 			<div class="wrap-login">
 				<form class="login-form" action="includes/reset-request.php", method="POST">
-                    <h3 class="login-header">Reset Password</h3>
+          <h3 class="login-header">Reset Password</h3>
+          <?php
+            // Show validation errors
+            if (!empty($validationErrors)) {
+              echo "<div class='validation-msg'>";
+              foreach ($validationErrors as $err) {
+                if ($err) {
+                  echo "<li>$err</li>";
+                }
+              }
+              echo "</div>";
+            }
+          ?>
 					<div class="wrap-input">
 						<input class="form-input" type="text" name="email" placeholder="Please enter your email">
 					</div>
@@ -21,19 +33,6 @@
 					<div class="login-form-link">
             <p>Not a member? <a class="register-link" href="register.php">Sign up here</a></p>
           </div>
-          <?php
-
-          // Show validation errors
-          if (!empty($validationErrors)) {
-            echo "<div class='validation-msg'>";
-            foreach ($validationErrors as $err) {
-              if ($err) {
-                echo "<li>$err</li>";
-              }
-            }
-            echo "</div>";
-          }
-      ?>
         </form>
           <?php 
           if (isset($_GET["reset"])) {

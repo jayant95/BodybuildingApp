@@ -132,6 +132,7 @@
 	</form>
 	</div>
 	<div class="feature-info details">
+		<p>*All measurements are in inches</p>
 		<h3>Walkthrough Example</h3>
 		<p>Pinned attribute: Calves | Bodybuilder: Arnold Schwarzenegger: 20in | User: 15in</p>
 		<p>Arnold's Ratios:</p>
