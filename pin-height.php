@@ -12,9 +12,17 @@
       $_SESSION['form-page'] = "height";
 
       header('Location: pin-result.php');
+    } else {
+      $_SESSION['message'] = "Please choose a bodybuilder!";
     }
+  }
 
-}
+  if (isset($_SESSION['message'])) {
+    echo "<div class='site-message'>";
+    echo "<p>" . $_SESSION['message'] . "</p>";
+    echo "</div>";
+    unset($_SESSION['message']);
+  }
 ?>
 <div class="page-background">
   <div class="content-wrapper">

@@ -6,13 +6,6 @@
 ?>
 
 <?php
-  if (isset($_SESSION['message'])) {
-    echo "<div class='site-message'>";
-    echo "<p>" . $_SESSION['message'] . "</p>";
-    echo "</div>";
-    unset($_SESSION['message']);
-  }
-
   if (isset($_POST['submit'])) {
       $bodypart = !empty($_COOKIE["bodypart"]) ? $_COOKIE["bodypart"] : "";
       $bodybuilderName = $_POST['bodybuilder'];
@@ -26,7 +19,13 @@
 
       header('Location: pin-result.php');
     }
+  }
 
+  if (isset($_SESSION['message'])) {
+    echo "<div class='site-message'>";
+    echo "<p>" . $_SESSION['message'] . "</p>";
+    echo "</div>";
+    unset($_SESSION['message']);
   }
   
 ?>
