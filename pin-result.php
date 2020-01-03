@@ -43,12 +43,20 @@
 		} else if ($pinnedAttribute == "arms") {
 			$pinnedAttribute = "leftArm";
 		}
-
-		$resultChest = $userStats[$pinnedAttribute] * $chestRatio;
-		$resultArms = $userStats[$pinnedAttribute] * $armRatio;
-		$resultWaist = $userStats[$pinnedAttribute] * $waistRatio;
-		$resultThighs = $userStats[$pinnedAttribute] * $thighRatio;
-		$resultCalves = $userStats[$pinnedAttribute] * $calfRatio;
+		
+		if (isset($userStats[$pinnedAttribute])) {
+			$resultChest = $userStats[$pinnedAttribute] * $chestRatio;
+			$resultArms = $userStats[$pinnedAttribute] * $armRatio;
+			$resultWaist = $userStats[$pinnedAttribute] * $waistRatio;
+			$resultThighs = $userStats[$pinnedAttribute] * $thighRatio;
+			$resultCalves = $userStats[$pinnedAttribute] * $calfRatio;
+		} else {
+			$resultChest = 0;
+			$resultArms = 0;
+			$resultWaist = 0;
+			$resultThighs = 0;
+			$resultCalves = 0;
+		}
 
 		$userGoal['chest'] = $resultChest;
 		$userGoal['arms'] = $resultArms;
@@ -98,12 +106,12 @@
 		</tr>
 		<tr>
 			<?php
-				echo "<td>" . $userStats['first-name'] . " " . $userStats['last-name'] . "</td>";
-				echo "<td>" . $userStats['chest'] . "</td>";
-				echo "<td>" . $userStats['leftArm'] . "</td>";
-				echo "<td>" . $userStats['waist'] . "</td>";
-				echo "<td>" . $userStats['leftThigh'] . "</td>";
-				echo "<td>" . $userStats['leftCalf'] . "</td>";
+				echo "<td>" . $userStats['first-name'] . " " . $userStats['last-name'] . "</td>"; 
+				echo isset($userStats['chest']) ?  "<td>" . $userStats['chest'] . "</td>" : "<td>N/A</td>"; 
+				echo isset($userStats['leftArm']) ?  "<td>" . $userStats['leftArm'] . "</td>" : "<td>N/A</td>";
+				echo isset($userStats['waist']) ?  "<td>" . $userStats['waist'] . "</td>" : "<td>N/A</td>"; 
+				echo isset($userStats['leftThigh']) ?  "<td>" . $userStats['leftThigh'] . "</td>" : "<td>N/A</td>"; 
+				echo isset($userStats['leftCalf']) ?  "<td>" . $userStats['leftCalf'] . "</td>" : "<td>N/A</td>"; 
 			?>
 		</tr>
 		<tr>
@@ -119,11 +127,11 @@
 		<tr>
 		<?php
 				echo "<th>+/-</th>";
-				echo "<td>" . round($resultChest - $userStats['chest'], 2) . "</td>";
-				echo "<td>" . round($resultArms - $userStats['leftArm'], 2) . "</td>";
-				echo "<td>" . round($resultWaist - $userStats['waist'], 2) . "</td>";
-				echo "<td>" . round($resultThighs - $userStats['leftThigh'], 2) . "</td>";
-				echo "<td>" . round($resultCalves - $userStats['leftCalf'], 2) . "</td>";
+				echo isset($userStats['chest']) ?  "<td>" . round($resultChest - $userStats['chest'], 2) . "</td>" : "<td>N/A</td>";
+				echo isset($userStats['leftArm']) ?  "<td>" . round($resultArms - $userStats['leftArm'], 2) . "</td>" : "<td>N/A</td>";
+				echo isset($userStats['waist']) ?  "<td>" . round($resultWaist- $userStats['waist'], 2) . "</td>" : "<td>N/A</td>";
+				echo isset($userStats['leftThigh']) ?  "<td>" . round($resultThighs - $userStats['leftThigh'], 2) . "</td>" : "<td>N/A</td>";
+				echo isset($userStats['leftCalf']) ?  "<td>" . round($resultCalves - $userStats['leftCalf'], 2) . "</td>" : "<td>N/A</td>";
 			?>
 		</tr>
 	</table>

@@ -31,7 +31,7 @@
         $isRegisteredUsername = isExistingUser($user['username'], $connection, "username");
         if (!$isRegisteredEmail && !$isRegisteredUsername) {
           registerNewUser($user, $connection);
-          header("Location: home.php");
+          header("Location: profile.php");
         } else {
           if ($isRegisteredEmail != NULL) {
             $errors[] = $isRegisteredEmail;

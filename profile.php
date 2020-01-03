@@ -9,7 +9,7 @@
 
   if (!empty($_SESSION['username'])) {
     $user_profile = getProfileInformation($_SESSION['username'], $connection);
-    $userGoal = getCurrentUserGoal($_SESSION['memberID'], $connection);
+    $userGoal = getCurrentUserGoal($_SESSION['memberID'], $connection); 
   } else {
     header("Location: login.php");
   }

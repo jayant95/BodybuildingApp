@@ -51,6 +51,7 @@
     $_SESSION['username'] = $user['username'];
     $_SESSION['email'] = $user['email'];
     $_SESSION['memberID'] = getMemberID($user['username'], $connection);
+    $_SESSION['message'] = "Please fill in your measurements to begin your journey!";
     $path = 'includes/uploads/' . $_SESSION['username'] . "/" . date('F');
     mkdir($path, 0777, true);
 
@@ -288,12 +289,11 @@
 
   function createMemberDetailEntry($user, $connection) {
     $sql = "INSERT INTO memberdetails (leftArm, rightArm, chest, waist, leftThigh, rightThigh, leftCalf, rightCalf, shoulders, neck, weight, height, bodyFat, wrist, ankles, knee, username)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            VALUES (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,?)";
     
     $stmt = $connection->prepare($sql);
     if ($stmt) {
-      $stmt->bind_param('dddddddddddddddds', $user['leftArm'], $user['rightArm'], $user['chest'], $user['waist'], $user['leftThigh'], $user['rightThigh'], $user['leftCalf'],
-                        $user['rightCalf'], $user['shoulders'], $user['neck'], $user['weight'], $user['height'], $user['bodyFat'], $user['wrists'], $user['ankles'], $user['knee'], $_SESSION['username']);
+      $stmt->bind_param('s', $_SESSION['username']);
       $stmt->execute();
     } else {
       $error = $connection->errno . ' ' . $connection->error;
