@@ -66,8 +66,8 @@
             );
       
         // need to put this information safer once online
-        $mail->Username = "jayanttailor95@gmail.com";
-        $mail->Password = "clonewars95";
+        $mail->Username = "********";
+        $mail->Password = "*********";
       
         $mail->IsHTML(true); // if you are going to send HTML formatted emails
         $mail->SingleTo = true; // if you want to send a same email to multiple users. multiple emails will be sent one-by-one.
